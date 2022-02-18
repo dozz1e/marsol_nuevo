@@ -1,0 +1,26 @@
+{
+  "name": "marsol",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "core-js": "^3.15.1",
+    "nuxt": "^2.15.7",
+    "nuxt-leaflet": "^0.0.25",
+    "nuxt-ssr-cache": "^1.5.2",
+    "nuxtjs-mdi-font": "^1.0.2",
+    "vue-cool-lightbox": "^2.7.4",
+    "vue-social-sharing": "^3.0.8",
+    "vuetify": "^2.5.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.1"
+  }
+}

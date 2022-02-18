@@ -1,0 +1,53 @@
+export default () => ({
+  namespaced: true,
+  propiedades: [],
+  propiedad: {},
+  mapa: {},
+  extension: null,
+  ultimas: [],
+  importantes: [],
+  tags: [],
+  ciudades: [],
+  venta: [],
+  arriendo: [],
+  agentes: [
+    {
+      id: 1,
+      nombre: "Marlene Alarcón",
+      titulo: "Administradora de Empresas",
+      fono: "56995999796",
+      correo: "malarcon@marsolpropiedades.cl",
+      slug: "marlene"
+    },
+    {
+      id: 2,
+      nombre: "Solange Maturana",
+      titulo: "Ingeniera Comercial",
+      fono: "56983633829",
+      correo: "smaturana@marsolpropiedades.cl",
+      slug: "solange"
+    }
+  ],
+  dichos: [
+    {
+      titulo: "Un gran equipo siempre junto a ti",
+      sub: "Juntos buscaremos el hogar de tus sueños"
+    },
+    {
+      titulo: "Tu compra o venta en las mejores manos",
+      sub: "Venta y arriendo de propiedades"
+    },
+    {
+      titulo: "Vendemos o arrendamos su propiedad",
+      sub: "¿Necesitas vender o arrendar? Confía en los mejores profesionales"
+    },
+    {
+      titulo: "Encuentra con nosotros la propiedad que estás buscando ",
+      sub: "Te ayudamos a encontrar el espacio que necesitas"
+    },
+    {
+      titulo: "Este puede ser tu nuevo hogar",
+      sub: "Compra o vende con nosotros"
+    }
+  ]
+});
