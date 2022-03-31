@@ -23,9 +23,7 @@
                 ></v-carousel-item>
               </v-carousel>
               <header class="py-2">
-                EN <n-link :to="`/links/${opePro}`" v-text="opePro"></n-link> /
-                INICIADO
-                <span v-text="fecha(soloPropiedad.date)"></span>
+                EN <n-link :to="`/links/${opePro}`" v-text="opePro"></n-link>
               </header>
               <v-row no-gutters>
                 <v-col
