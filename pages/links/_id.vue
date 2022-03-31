@@ -62,10 +62,10 @@ export default {
     PortadaOtras,
     PropiedadesCardAlterno,
     BuscadorLateral,
-    Foot,
+    Foot
   },
   data: () => ({
-    tgs: false,
+    tgs: false
   }),
   head() {
     return {
@@ -75,33 +75,33 @@ export default {
           hid: "description",
           name: "description",
           content:
-            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica.",
+            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
         { property: "og:type", content: "website" },
         {
           property: "og:title",
-          content: "Link a Propiedades | MarSol Propiedades",
+          content: "Link a Propiedades | MarSol Propiedades"
         },
         {
           property: "og:description",
           content:
-            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica.",
+            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
         {
           property: "og:url",
-          content: "https://www.marsolpropiedades.cl/links",
-        },
+          content: "https://www.marsolpropiedades.cl/links"
+        }
       ],
       link: [
-        { rel: "canonical", href: "https://www.marsolpropiedades.cl/links" },
-      ],
+        { rel: "canonical", href: "https://www.marsolpropiedades.cl/links" }
+      ]
     };
   },
   computed: {
     ...mapGetters(["listadoPropiedades"]),
     filtroPropiedades() {
       let id = this.$route.params.id;
-      let pro = this.listadoPropiedades.filter((pdds) => {
+      let pro = this.listadoPropiedades.filter(pdds => {
         let ope = pdds.operacion.toLowerCase();
         let cate = pdds.categoria.toLowerCase();
         let city = pdds.ciudad
@@ -122,7 +122,7 @@ export default {
         }
       });
       return pro;
-    },
+    }
   },
   methods: {
     movil(pro) {
@@ -132,14 +132,14 @@ export default {
     },
     imagenPro(pro) {
       let imgpro = "";
-      pro.yoast_meta.forEach((yoa) => {
+      pro.yoast_meta.forEach(yoa => {
         if ("og:image" === yoa.property) {
           imgpro = yoa.content;
         }
       });
       return imgpro;
-    },
-  },
+    }
+  }
 };
 </script>
 

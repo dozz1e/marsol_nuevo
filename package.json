@@ -17,7 +17,7 @@
     "nuxt-ssr-cache": "^1.5.2",
     "nuxtjs-mdi-font": "^1.0.2",
     "vue-cool-lightbox": "^2.7.4",
-    "vue-social-sharing": "^3.0.8",
+    "vue-social-sharing": "^3.0.9",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {

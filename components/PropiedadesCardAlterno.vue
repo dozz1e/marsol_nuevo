@@ -2,9 +2,17 @@
   <div class="alterno">
     <v-card tile nuxt :to="`/propiedades/${slug}`" hover light>
       <v-img :src="imagen" :alt="titulo" height="180">
-        <v-chip large label class="valor white--text">
+        <v-chip
+          large
+          label
+          class="valor white--text"
+          v-if="'' != precio || '' != preciouf"
+        >
           <precio :valor="precio" v-if="'' != precio"></precio>
-          <precioUf :valor="preciouf" v-else></precioUf>
+          <precioUf
+            :valor="preciouf"
+            v-if="'' != preciouf && '' == precio"
+          ></precioUf>
         </v-chip>
       </v-img>
       <v-card-subtitle class="py-1">
@@ -63,6 +71,11 @@
                 </v-list-item>
               </v-col>
             </v-row>
+          </v-col>
+          <v-col cols="12" class="pa-0" v-if="'' == precio && '' == preciouf">
+            <v-chip label>
+              PROYECTO
+            </v-chip>
           </v-col>
         </v-row>
       </v-card-actions>

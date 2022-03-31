@@ -13,9 +13,15 @@
         <v-col cols="12" md="8">
           <div class="ma-3 proPagina">
             <section class="proPagina-data">
-              <v-img :src="imagenPro" :alt="nombrePro">
-                <span v-text="opePro" class="white--text pa-2 opera"></span>
-              </v-img>
+              <v-carousel hide-delimiter-background>
+                <v-carousel-item
+                  v-for="(image, i) in imagesEx(
+                    soloPropiedad.inpost_gallery_data
+                  )"
+                  :key="i"
+                  :src="image"
+                ></v-carousel-item>
+              </v-carousel>
               <header class="py-2">
                 EN <n-link :to="`/links/${opePro}`" v-text="opePro"></n-link> /
                 INICIADO
@@ -87,17 +93,20 @@
                   </v-row>
                 </v-col>
               </v-row>
-              <v-row no-gutters v-if="false">
-                <v-col cols="12" class="d-flex align-center">
+              <v-row no-gutters>
+                <v-col cols="12" class="d-flex align-center py-3">
                   <h3>Compartir</h3>
-                  <ShareNetwork
+                  <share-network
                     network="facebook"
+                    key="facebook"
                     :url="
-                      `https://marsolpropiedades.cl/propiedades/${this.$route.params.id}`
+                      `https://marsolpropiedades.cl/propiedades/${soloPropiedad.slug}`
                     "
-                    :title="titlePro"
+                    :title="soloPropiedad.title.rendered"
                     :description="descripcionPro"
-                    quote="MarSol Propiedades Compra Venta Arriendo Inmobiliario"
+                    quote="MarSol Group Propiedades"
+                    hashtags="propiedades,arriedo, venta, administración"
+                    twitterUser="Dozz1e"
                   >
                     <v-img
                       src="/logos/social/facebook.png"
@@ -106,15 +115,18 @@
                       width="45"
                       class="ml-3"
                     ></v-img>
-                  </ShareNetwork>
-                  <ShareNetwork
+                  </share-network>
+                  <share-network
                     network="whatsapp"
+                    key="whatsapp"
                     :url="
-                      `https://marsolpropiedades.cl/propiedades/${this.$route.params.id}`
+                      `https://marsolpropiedades.cl/propiedades/${soloPropiedad.slug}`
                     "
-                    :title="titlePro"
-                    :description="descripcionPro"
-                    quote="MarSol Propiedades Compra Venta Arriendo Inmobiliario"
+                    :title="soloPropiedad.title.rendered"
+                    :descripcionPro="descripcionPro"
+                    quote="MarSol Group Propiedades"
+                    hashtags="propiedades,arriedo, venta, administración"
+                    twitterUser="Dozz1e"
                   >
                     <v-img
                       src="/logos/social/whatsapp.png"
@@ -123,47 +135,9 @@
                       width="45"
                       class="ml-3"
                     ></v-img>
-                  </ShareNetwork>
+                  </share-network>
                 </v-col>
               </v-row>
-            </section>
-            <section
-              v-if="'' != soloPropiedad.inpost_gallery_data"
-              class="proPagina-images-extras pb-5 pt-3"
-            >
-              <v-expansion-panels flat>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    <strong>MÁS IMÁGENES</strong>
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content>
-                    <coolLightBox
-                      :items="imagesEx(soloPropiedad.inpost_gallery_data)"
-                      :index="lightbox"
-                      @close="lightbox = null"
-                    ></coolLightBox>
-                    <v-row>
-                      <v-col
-                        cols="12"
-                        sm="6"
-                        lg="4"
-                        class="image d-flex child-flex"
-                        v-for="(image, imageIndex) in imagesEx(
-                          soloPropiedad.inpost_gallery_data
-                        )"
-                        :key="imageIndex"
-                        @click="lightbox = imageIndex"
-                      >
-                        <v-img
-                          :src="image"
-                          :alt="`Imagen ${imageIndex + 1}`"
-                          class="galeria"
-                        ></v-img>
-                      </v-col>
-                    </v-row>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
             </section>
             <section v-if="'' != soloPropiedad.detalles">
               <section class="proPagina-detalles">
