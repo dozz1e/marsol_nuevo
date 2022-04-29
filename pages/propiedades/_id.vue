@@ -411,7 +411,6 @@ export default {
           name: "description",
           content: this.descripcionPro
         },
-        { property: "og:type", content: "og:website" },
         {
           property: "og:url",
           content: `https://marsolpropiedades.cl/propiedades/${this.$route.params.id}`

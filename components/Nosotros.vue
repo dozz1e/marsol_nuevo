@@ -9,17 +9,20 @@
     >
       <v-container>
         <v-row>
-          <v-col cols="12" sm="4" v-if="ocultar">
-            <v-card class="mb-3" height="350" color="rgba(255,255,255,.5)">
-              <v-card-title>
-                <v-img
-                  src="/logos/logo-completo.png"
-                  height="100"
-                  alt="Logo MarSol"
-                  contain
-                  position="left"
-                ></v-img>
-              </v-card-title>
+          <v-col cols="12" sm="4">
+            <v-img
+              src="/logos/logo-completo.png"
+              height="90%"
+              alt="Logo MarSol"
+              contain
+            ></v-img>
+          </v-col>
+          <v-col cols="12" sm="4">
+            <v-card
+              class="mb-3 centro"
+              height="350"
+              color="rgba(255,255,255,.5)"
+            >
               <v-card-title>NUESTRO EQUIPO</v-card-title>
               <v-card-text>
                 Somos un apasionado equipo de corredores inmobiliarios.
@@ -32,7 +35,7 @@
           </v-col>
           <v-col
             cols="12"
-            :sm="ocultar ? 4 : 6"
+            sm="4"
             v-for="(agent, index) in listadoAgentes"
             :key="index"
           >
@@ -49,22 +52,26 @@ import { mapGetters } from "vuex";
 import Agente from "~/components/Agente";
 export default {
   components: {
-    Agente,
+    Agente
   },
   props: {
     ocultar: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   computed: {
-    ...mapGetters(["listadoAgentes"]),
-  },
+    ...mapGetters(["listadoAgentes"])
+  }
 };
 </script>
 
 <style lang="sass">
 #nosotros
+  .centro
+    display: flex
+    flex-direction: column
+    justify-content: center
   .v-card
     .v-card__title
       background: transparent

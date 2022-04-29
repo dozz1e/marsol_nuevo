@@ -18,14 +18,6 @@ export default () => ({
       fono: "56995999796",
       correo: "malarcon@marsolpropiedades.cl",
       slug: "marlene"
-    },
-    {
-      id: 2,
-      nombre: "Solange Maturana",
-      titulo: "Ingeniera Comercial",
-      fono: "56983633829",
-      correo: "smaturana@marsolpropiedades.cl",
-      slug: "solange"
     }
   ],
   dichos: [

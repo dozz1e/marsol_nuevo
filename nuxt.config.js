@@ -35,6 +35,7 @@ export default {
         content:
           "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
       },
+      { property: "og:type", content: "og:website" },
       {
         property: "og:image:width",
         content: "1280"
