@@ -16,13 +16,7 @@
             label="Operación"
           ></v-select>
         </v-col>
-        <v-col
-          cols="12"
-          sm="6"
-          lg="4"
-          v-if="listadoCiudades != null"
-          class="py-0"
-        >
+        <v-col cols="12" sm="6" lg="4" v-if="listadoCiudades" class="py-0">
           <v-select
             v-model="ciudad"
             :items="listadoCiudades"
@@ -123,21 +117,21 @@
             sm="6"
             lg="4"
           >
-            <PropiedadesCardAlterno
+            <propiedades-card-alterno
               :slug="pro.slug"
-              :imagen="imagenPro(pro)"
-              :titulo="pro.title.rendered"
-              :precio="pro.precio"
-              :preciouf="pro.precio_uf"
-              :categoria="pro.categoria"
-              :operacion="pro.operacion"
-              :direccion="pro.direccion"
-              :area="pro.area_total"
-              :ciudad="pro.ciudad"
-              :habitaciones="pro.habitaciones"
-              :banos="pro.banos"
+              :imagen="pro.featuredImage.node.sourceUrl"
+              :titulo="pro.title"
+              :precio="pro.precio.precio"
+              :preciouf="pro.precio.precioUf"
+              :categoria="pro.categoriaGraphql.categoria"
+              :operacion="pro.operacion.operacion"
+              :direccion="pro.direccion.direccion"
+              :area="pro.datos.areaTotal"
+              :ciudad="pro.direccion.ciudad"
+              :habitaciones="pro.datos.habitaciones"
+              :banos="pro.datos.banos"
               :automv="movil(pro)"
-            ></PropiedadesCardAlterno>
+            ></propiedades-card-alterno>
           </v-col>
         </v-row>
         <v-row v-else>
@@ -162,7 +156,7 @@ import PropiedadesCardAlterno from "~/components/PropiedadesCardAlterno";
 
 export default {
   components: {
-    PropiedadesCardAlterno,
+    PropiedadesCardAlterno
   },
   data: () => ({
     valido: false,
@@ -175,32 +169,38 @@ export default {
     tituloBus: false,
     estacionamiento: false,
     piezas: 10,
-    metros: 10000,
+    metros: 10000
   }),
   computed: {
-    ...mapGetters(["listadoCiudades", "listadoPropiedades"]),
+    ...mapGetters(["listadoCiudades", "listadoPropiedades"])
   },
   methods: {
     buscarPropiedad() {
       this.tituloBus = true;
-      this.prpds = this.listadoPropiedades.filter((pro) => {
+      this.prpds = this.listadoPropiedades.filter(pro => {
         let tp = true,
           op = true,
           ci = true,
           are = true,
           piz = true,
           est = true;
-        if ("" != this.tipo) if (this.tipo != pro.categoria) tp = false;
+        if ("" != this.tipo)
+          if (this.tipo != pro.categoriaGraphql.categoria) tp = false;
         if ("" != this.operacion)
-          if (this.operacion != pro.operacion) op = false;
-        if ("" != this.ciudad) if (this.ciudad != pro.ciudad) ci = false;
+          if (this.operacion != pro.operacion.operacion) op = false;
+        if ("" != this.ciudad)
+          if (this.ciudad != pro.direccion.ciudad) ci = false;
         if (this.estacionamiento)
-          if (!pro.incluye.includes("Estacionamiento")) est = false;
+          if (
+            pro.incluye.incluye &&
+            !pro.incluye.incluye.includes("Estacionamiento")
+          )
+            est = false;
         if (10000 > this.metros) {
-          if (this.numero(pro.area_total) > this.metros) are = false;
+          if (this.numero(pro.datos.areaTotal) > this.metros) are = false;
         }
-        if ("" != pro.habitaciones)
-          if (pro.habitaciones > this.piezas) piz = false;
+        if ("" != pro.datos.habitaciones)
+          if (pro.datos.habitaciones > this.piezas) piz = false;
         if (tp && op && ci && est && are && piz) return pro;
       });
     },
@@ -219,21 +219,16 @@ export default {
       this.piezas = 10;
       this.tituloBus = false;
     },
-    imagenPro(pro) {
-      let imgpro = "";
-      pro.yoast_meta.forEach((yoa) => {
-        if ("og:image" === yoa.property) {
-          imgpro = yoa.content;
-        }
-      });
-      return imgpro;
-    },
     movil(pro) {
       let movil = "";
-      if (pro.incluye.includes("Estacionamiento")) movil = "1";
+      if (
+        pro.incluye.incluye &&
+        pro.incluye.incluye.includes("Estacionamiento")
+      )
+        movil = "1";
       return movil;
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -3,23 +3,88 @@ const base =
 
 export default {
   async listaPropiedades({ commit, state }) {
-    const propiedades = await this.$axios.$get(`${base}&per_page=100`);
+    const propiedades = await this.$axios.post(
+      "https://marsolpropiedades.cl/data/graphql",
+      {
+        query: `{
+          propiedades(first: 100, where: {categoryId: 2}) {
+            nodes {
+              title
+              slug
+              youtube {
+                youtube
+              }
+              precio {
+                precio
+                precioUf
+              }
+              operacion {
+                operacion
+              }
+              incluye {
+                incluye
+              }
+              importancia {
+                importancia
+              }
+              featuredImage {
+                node {
+                  sourceUrl(size: MEDIUM)
+                  altText
+                  link
+                }
+              }
+              espaciosComunes {
+                espaciosComunes
+              }
+              direccion {
+                ciudad
+                direccion
+              }
+              detallesAdicionales {
+                detalles
+              }
+              datos {
+                areaTotal
+                banos
+                habitaciones
+              }
+              categoriaGraphql {
+                categoria
+              }
+              agentes {
+                agentes
+              }
+              seo {
+                metaKeywords
+                metaDesc
+                title
+              }
+            }
+          }
+        }`
+      }
+    );
     this.$axios.onError(error => {
       console.log(error);
     });
+    commit("SET_PROPIEDADES", propiedades.data.data.propiedades.nodes);
     let tags = ["venta", "arriendo"];
     let ciudades = [];
     let importantes = [];
     let aux = 1;
     let arrAux = [];
-    propiedades.forEach(pro => {
-      if (!tags.includes(pro.ciudad) && "" != pro.ciudad) {
-        ciudades.push(pro.ciudad);
+    propiedades.data.data.propiedades.nodes.forEach(pro => {
+      if (!ciudades.includes(pro.direccion.ciudad) && pro.direccion.ciudad) {
+        ciudades.push(pro.direccion.ciudad);
       }
-      if (!tags.includes(pro.categoria) && "" != pro.categoria) {
-        tags.push(pro.categoria);
+      if (
+        !tags.includes(pro.categoriaGraphql.categoria.toLowerCase()) &&
+        pro.categoriaGraphql.categoria
+      ) {
+        tags.push(pro.categoriaGraphql.categoria.toLowerCase());
       }
-      if ("Alto" === pro.importancia) {
+      if ("Alto" === pro.importancia.importancia) {
         if (3 >= aux) {
           arrAux.push(pro);
           aux++;
@@ -30,14 +95,74 @@ export default {
         }
       }
     });
-    commit("SET_PROPIEDADES", propiedades);
     commit("SET_CIUDADES", ciudades);
     commit("SET_TAGS", tags);
     commit("SET_IMPORTANTES", importantes);
   },
   async ultimasPropiedades({ commit }) {
-    const propiedades = await this.$axios.$get(`${base}&per_page=6`);
-    commit("SET_ULTIMAS", propiedades);
+    const propiedades = await this.$axios.post(
+      "https://marsolpropiedades.cl/data/graphql",
+      {
+        query: `{
+          propiedades(first: 6, where: {categoryId: 2}) {
+            nodes {
+              title
+              slug
+              youtube {
+                youtube
+              }
+              precio {
+                precio
+                precioUf
+              }
+              operacion {
+                operacion
+              }
+              incluye {
+                incluye
+              }
+              importancia {
+                importancia
+              }
+              featuredImage {
+                node {
+                  sourceUrl(size: MEDIUM)
+                  altText
+                  link
+                }
+              }
+              espaciosComunes {
+                espaciosComunes
+              }
+              direccion {
+                ciudad
+                direccion
+              }
+              detallesAdicionales {
+                detalles
+              }
+              datos {
+                areaTotal
+                banos
+                habitaciones
+              }
+              categoriaGraphql {
+                categoria
+              }
+              agentes {
+                agentes
+              }
+              seo {
+                metaKeywords
+                metaDesc
+                title
+              }
+            }
+          }
+        }`
+      }
+    );
+    commit("SET_ULTIMAS", propiedades.data.data.propiedades.nodes);
   },
   quitarPropiedad({ commit }) {
     commit("SET_PROPIEDAD", null);

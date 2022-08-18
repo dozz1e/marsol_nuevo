@@ -1,6 +1,6 @@
 <template>
   <div id="tagsPage">
-    <portada-otras titulo="Tags Propiedades"></portada-otras>
+    <portada-otras titulo="Tags Propiedades" fondo="vina"></portada-otras>
     <v-container>
       <v-row>
         <v-col cols="12" sm="8">
@@ -14,19 +14,19 @@
               sm="6"
             >
               <propiedades-card-alterno
-                :imagen="imagenPro(pro)"
-                :titulo="pro.title.rendered"
-                :direccion="pro.direccion"
-                :categoria="pro.categoria"
-                :operacion="pro.operacion"
-                :area="pro.area_total"
-                :habitaciones="pro.habitaciones"
-                :banos="pro.banos"
+                :imagen="pro.featuredImage.node.link"
+                :titulo="pro.title"
+                :direccion="pro.direccion.direccion"
+                :categoria="pro.categoriaGraphql.categoria"
+                :operacion="pro.operacion.operacion"
+                :area="pro.datos.areaTotal"
+                :habitaciones="pro.datos.habitaciones"
+                :banos="pro.datos.banos"
                 :automv="movil(pro)"
-                :precio="pro.precio"
-                :preciouf="pro.precio_uf"
+                :precio="pro.precio.precio"
+                :preciouf="pro.precio.precioUf"
                 :slug="pro.slug"
-                :ciudad="pro.ciudad"
+                :ciudad="pro.direccion.ciudad"
               ></propiedades-card-alterno>
             </v-col>
           </v-row>
@@ -88,6 +88,11 @@ export default {
             "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
         {
+          property: "og:image",
+          itemprop: "image",
+          content: "https://www.marsolpropiedades.cl/logos/logo-completo.png"
+        },
+        {
           property: "og:url",
           content: "https://www.marsolpropiedades.cl/links"
         }
@@ -127,17 +132,12 @@ export default {
   methods: {
     movil(pro) {
       let movil = "";
-      if (pro.incluye.includes("Estacionamiento")) movil = "1";
+      if (
+        pro.incluye.incluye &&
+        pro.incluye.incluye.includes("Estacionamiento")
+      )
+        movil = "1";
       return movil;
-    },
-    imagenPro(pro) {
-      let imgpro = "";
-      pro.yoast_meta.forEach(yoa => {
-        if ("og:image" === yoa.property) {
-          imgpro = yoa.content;
-        }
-      });
-      return imgpro;
     }
   }
 };

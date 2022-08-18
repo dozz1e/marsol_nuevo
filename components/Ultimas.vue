@@ -9,16 +9,16 @@
         :to="`/propiedades/${ult.slug}`"
         color="#37353d"
       >
-        <v-list-item-avatar horizontal tile>
-          <v-img :src="imagenPro(ult)" :alt="ult.title.rendered"></v-img>
+        <v-list-item-avatar horizontal tile class="ml-1">
+          <v-img :src="ult.featuredImage.node.link" :alt="ult.title"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title
-            v-text="ult.title.rendered"
+            v-text="ult.title"
             class="white--text"
           ></v-list-item-title>
           <v-list-item-subtitle
-            v-text="ult.ciudad"
+            v-text="ult.direccion.ciudad"
             class="white--text"
           ></v-list-item-subtitle>
         </v-list-item-content>
@@ -31,19 +31,8 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["listadoUltimas"]),
-  },
-  methods: {
-    imagenPro(pro) {
-      let imgpro = "";
-      pro.yoast_meta.forEach((propiedad) => {
-        if ("og:image" === propiedad.property) {
-          imgpro = propiedad.content;
-        }
-      });
-      return imgpro;
-    },
-  },
+    ...mapGetters(["listadoUltimas"])
+  }
 };
 </script>
 

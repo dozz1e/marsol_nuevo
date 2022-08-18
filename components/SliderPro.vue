@@ -15,51 +15,51 @@
             <v-col cols="12" sm="4">
               <propiedades-card-alterno
                 :slug="pro[0].slug"
-                :imagen="imagenPro(pro[0])"
-                :titulo="pro[0].title.rendered"
-                :precio="pro[0].precio"
-                :preciouf="pro[0].precio_uf"
-                :categoria="pro[0].categoria"
-                :operacion="pro[0].operacion"
-                :direccion="pro[0].direccion"
-                :area="pro[0].area_total"
-                :ciudad="pro[0].ciudad"
-                :habitaciones="pro[0].habitaciones"
-                :banos="pro[0].banos"
+                :imagen="pro[0].featuredImage.node.sourceUrl"
+                :titulo="pro[0].title"
+                :precio="pro[0].precio.precio"
+                :preciouf="pro[0].precio.precioUf"
+                :categoria="pro[0].categoriaGraphql.categoria"
+                :operacion="pro[0].operacion.operacion"
+                :direccion="pro[0].direccion.direccion"
+                :area="pro[0].datos.areaTotal"
+                :ciudad="pro[0].direccion.ciudad"
+                :habitaciones="pro[0].datos.habitaciones"
+                :banos="pro[0].datos.banos"
                 :automv="movil(pro[0])"
               ></propiedades-card-alterno>
             </v-col>
-            <v-col cols="12" sm="4">
+            <v-col cols="12" sm="4" v-if="pro[1]">
               <propiedades-card-alterno
                 :slug="pro[1].slug"
-                :imagen="imagenPro(pro[1])"
-                :titulo="pro[1].title.rendered"
-                :precio="pro[1].precio"
-                :preciouf="pro[1].precio_uf"
-                :categoria="pro[1].categoria"
-                :operacion="pro[1].operacion"
-                :direccion="pro[1].direccion"
-                :area="pro[1].area_total"
-                :ciudad="pro[1].ciudad"
-                :habitaciones="pro[1].habitaciones"
-                :banos="pro[1].banos"
+                :imagen="pro[1].featuredImage.node.sourceUrl"
+                :titulo="pro[1].title"
+                :precio="pro[1].precio.precio"
+                :preciouf="pro[1].precio.precioUf"
+                :categoria="pro[1].categoriaGraphql.categoria"
+                :operacion="pro[1].operacion.operacion"
+                :direccion="pro[1].direccion.direccion"
+                :area="pro[1].datos.areaTotal"
+                :ciudad="pro[1].direccion.ciudad"
+                :habitaciones="pro[1].datos.habitaciones"
+                :banos="pro[1].datos.banos"
                 :automv="movil(pro[1])"
               ></propiedades-card-alterno>
             </v-col>
-            <v-col cols="12" sm="4">
+            <v-col cols="12" sm="4" v-if="pro[2]">
               <propiedades-card-alterno
                 :slug="pro[2].slug"
-                :imagen="imagenPro(pro[2])"
-                :titulo="pro[2].title.rendered"
-                :precio="pro[2].precio"
-                :preciouf="pro[2].precio_uf"
-                :categoria="pro[2].categoria"
-                :operacion="pro[2].operacion"
-                :direccion="pro[2].direccion"
-                :area="pro[2].area_total"
-                :ciudad="pro[2].ciudad"
-                :habitaciones="pro[2].habitaciones"
-                :banos="pro[2].banos"
+                :imagen="pro[2].featuredImage.node.sourceUrl"
+                :titulo="pro[2].title"
+                :precio="pro[2].precio.precio"
+                :preciouf="pro[2].precio.precioUf"
+                :categoria="pro[2].categoriaGraphql.categoria"
+                :operacion="pro[2].operacion.operacion"
+                :direccion="pro[2].direccion.direccion"
+                :area="pro[2].datos.areaTotal"
+                :ciudad="pro[2].direccion.ciudad"
+                :habitaciones="pro[2].datos.habitaciones"
+                :banos="pro[2].datos.banos"
                 :automv="movil(pro[2])"
               ></propiedades-card-alterno>
             </v-col>
@@ -86,11 +86,10 @@
 <script>
 import { mapGetters } from "vuex";
 import PropiedadesCardAlterno from "~/components/PropiedadesCardAlterno";
-// import Precio from "~/components/Precio";
-// import PrecioUf from "~/components/PrecioUf";
+
 export default {
   components: {
-    PropiedadesCardAlterno,
+    PropiedadesCardAlterno
   },
   data: () => ({
     mes: [
@@ -105,11 +104,11 @@ export default {
       "Septiembre",
       "Octubre",
       "Noviembre",
-      "Diciembre",
-    ],
+      "Diciembre"
+    ]
   }),
   computed: {
-    ...mapGetters(["listadoImportantes"]),
+    ...mapGetters(["listadoImportantes"])
   },
   methods: {
     fecha(valor) {
@@ -118,21 +117,16 @@ export default {
       aux = aux[0].split("-");
       return `${aux[2]} de ${this.mes[Number(aux[1])]} ${aux[0]}`;
     },
-    imagenPro(pro) {
-      let imgpro = "";
-      pro.yoast_meta.forEach((yoa) => {
-        if ("og:image" === yoa.property) {
-          imgpro = yoa.content;
-        }
-      });
-      return imgpro;
-    },
     movil(pro) {
       let movil = "";
-      if (pro.incluye.includes("Estacionamiento")) movil = "1";
+      if (
+        pro.incluye.incluye &&
+        pro.incluye.incluye.includes("Estacionamiento")
+      )
+        movil = "1";
       return movil;
-    },
-  },
+    }
+  }
 };
 </script>
 

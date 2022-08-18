@@ -9,10 +9,10 @@
               Ofrecemos servicio de venta, arriendo, administración y
               asesoramiento inmobiliario, dentro de la zona y el país.
             </span>
-            <Contacto posicion="flex-column" class="contacto"></Contacto>
+            <contacto posicion="flex-column" class="contacto"></contacto>
           </v-col>
           <v-col cols="12" sm="4">
-            <Ultimas :ultimas="listadoUltimas"></Ultimas>
+            <ultimas></ultimas>
           </v-col>
           <v-col cols="12" sm="4" class="d-flex flex-column">
             <h3>Link Rápidos</h3>
@@ -37,7 +37,7 @@
             </n-link>
           </v-col>
           <v-col cols="12" sm="8" class="d-flex flex-column justify-center">
-            <Redes></Redes>
+            <redes></redes>
           </v-col>
         </v-row>
       </v-container>
@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import Menu from "~/components/Menu";
 import Contacto from "~/components/Contacto";
 import Ultimas from "~/components/Ultimas";
@@ -58,11 +57,8 @@ import Redes from "~/components/Redes";
 export default {
   components: { Menu, Contacto, Ultimas, Redes },
   data: () => ({
-    posi: true,
-  }),
-  computed: {
-    ...mapGetters(["listadoUltimas"]),
-  },
+    posi: true
+  })
 };
 </script>
 

@@ -80,7 +80,6 @@ export default {
           content:
             "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
-        { property: "og:type", content: "website" },
         {
           property: "og:title",
           content: "Contacto MarSol | MarSol Propiedades"
@@ -95,6 +94,11 @@ export default {
           content: "https://www.marsolpropiedades.cl/contacto"
         },
         {
+          property: "og:image",
+          itemprop: "image",
+          content: "https://www.marsolpropiedades.cl/logos/logo-completo.png"
+        },
+        {
           property: "twitter:title",
           content: "Contacto MarSol | MarSol Propiedades"
         },
@@ -102,6 +106,10 @@ export default {
           property: "twitter:description",
           content:
             "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
+        },
+        {
+          property: "twitter:image",
+          content: "https://www.marsolpropiedades.cl/logos/logo-completo.png"
         }
       ],
       link: [

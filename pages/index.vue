@@ -30,7 +30,7 @@ export default {
     Servicios,
     Nosotros,
     Foot,
-    SliderPro,
+    SliderPro
   },
   head() {
     return {
@@ -40,34 +40,42 @@ export default {
           hid: "description",
           name: "description",
           content:
-            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica.",
+            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
-        { property: "og:type", content: "website" },
         {
           property: "og:title",
-          content: "MarSol Propiedades | Compra Venta Arriendo Inmobiliario",
+          content: "MarSol Propiedades | Compra Venta Arriendo Inmobiliario"
         },
         {
           property: "og:description",
           content:
-            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica.",
+            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
         { property: "og:url", content: "https://www.marsolpropiedades.cl/" },
         {
+          property: "og:image",
+          itemprop: "image",
+          content: "https://www.marsolpropiedades.cl/logos/logo-completo.png"
+        },
+        {
           property: "twitter:title",
-          content: "MarSol Propiedades | Compra Venta Arriendo Inmobiliario",
+          content: "MarSol Propiedades | Compra Venta Arriendo Inmobiliario"
         },
         {
           property: "twitter:description",
           content:
-            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica.",
+            "Dedicados al rubro inmobiliario, compra, venta, arriendo y/o administración de propiedades. Profesionales en el área administrativa, comercial y jurídica."
         },
-      ],
+        {
+          property: "twitter:image",
+          content: "https://www.marsolpropiedades.cl/logos/logo-completo.png"
+        }
+      ]
     };
   },
   computed: {
-    ...mapGetters(["listadoPropiedades"]),
-  },
+    ...mapGetters(["listadoPropiedades"])
+  }
 };
 </script>
 

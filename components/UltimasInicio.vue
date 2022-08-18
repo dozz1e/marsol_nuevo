@@ -19,17 +19,17 @@
         >
           <propiedades-card-alterno
             :slug="ulti.slug"
-            :imagen="imagenPro(ulti)"
-            :titulo="ulti.title.rendered"
-            :precio="ulti.precio"
-            :preciouf="ulti.precio_uf"
-            :categoria="ulti.categoria"
-            :operacion="ulti.operacion"
-            :direccion="ulti.direccion"
-            :area="ulti.area_total"
-            :ciudad="ulti.ciudad"
-            :habitaciones="ulti.habitaciones"
-            :banos="ulti.banos"
+            :imagen="ulti.featuredImage.node.sourceUrl"
+            :titulo="ulti.title"
+            :precio="ulti.precio.precio"
+            :preciouf="ulti.precio.precioUf"
+            :categoria="ulti.categoriaGraphql.categoria"
+            :operacion="ulti.operacion.operacion"
+            :direccion="ulti.direccion.direccion"
+            :area="ulti.datos.areaTotal"
+            :ciudad="ulti.direccion.ciudad"
+            :habitaciones="ulti.datos.habitaciones"
+            :banos="ulti.datos.banos"
             :automv="movil(ulti)"
           ></propiedades-card-alterno>
         </v-col>
@@ -49,27 +49,22 @@ import PropiedadesCardAlterno from "~/components/PropiedadesCardAlterno";
 
 export default {
   components: {
-    PropiedadesCardAlterno,
+    PropiedadesCardAlterno
   },
   computed: {
-    ...mapGetters(["listadoUltimas"]),
+    ...mapGetters(["listadoUltimas"])
   },
   methods: {
-    imagenPro(pro) {
-      let imgpro = "";
-      pro.yoast_meta.forEach((propiedad) => {
-        if ("og:image" === propiedad.property) {
-          imgpro = propiedad.content;
-        }
-      });
-      return imgpro;
-    },
     movil(pro) {
       let movil = "";
-      if (pro.incluye.includes("Estacionamiento")) movil = "1";
+      if (
+        pro.incluye.incluye &&
+        pro.incluye.incluye.includes("Estacionamiento")
+      )
+        movil = "1";
       return movil;
-    },
-  },
+    }
+  }
 };
 </script>
 

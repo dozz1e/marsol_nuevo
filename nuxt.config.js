@@ -3,11 +3,66 @@ import axios from "axios";
 
 const rutas = async () => {
   let propiedades = axios
-    .get(
-      "https://marsolpropiedades.cl/data/wp-json/wp/v2/ms-propiedades?per_page=100"
-    )
+    .post("https://marsolpropiedades.cl/data/graphql", {
+      query: `{
+          propiedades(first: 100, where: {categoryId: 2}) {
+            nodes {
+              title
+              slug
+              youtube {
+                youtube
+              }
+              precio {
+                precio
+                precioUf
+              }
+              operacion {
+                operacion
+              }
+              incluye {
+                incluye
+              }
+              importancia {
+                importancia
+              }
+              featuredImage {
+                node {
+                  altText
+                  link
+                }
+              }
+              espaciosComunes {
+                espaciosComunes
+              }
+              direccion {
+                ciudad
+                direccion
+              }
+              detallesAdicionales {
+                detalles
+              }
+              datos {
+                areaTotal
+                banos
+                habitaciones
+              }
+              categoriaGraphql {
+                categoria
+              }
+              agentes {
+                agentes
+              }
+              seo {
+                metaKeywords
+                metaDesc
+                title
+              }
+            }
+          }
+        }`
+    })
     .then(res => {
-      return res.data.map(crs => {
+      return res.data.data.propiedades.nodes.map(crs => {
         return "/propiedades/" + crs.slug;
       });
     });
@@ -16,7 +71,6 @@ const rutas = async () => {
 
 export default {
   target: "static",
-  ssr: false,
   head: {
     titleTemplate: "%s",
     htmlAttrs: {
@@ -35,14 +89,15 @@ export default {
         content:
           "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
       },
-      { property: "og:type", content: "og:website" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:type", content: "website" },
       {
         property: "og:image:width",
-        content: "1280"
+        content: "300"
       },
       {
         property: "og:image:height",
-        content: "720"
+        content: "300"
       },
       { property: "og:locale", content: "es_CL" },
       { property: "og:site_name", content: "MarSol Propiedades" }
@@ -67,9 +122,9 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ["vue-slick-carousel/dist/vue-slick-carousel.css"],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: "./plugins/vue-slick-carousel.js" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -100,8 +155,7 @@ export default {
   },
 
   generate: {
-    routes: rutas,
-    fallback: "404"
+    routes: rutas
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

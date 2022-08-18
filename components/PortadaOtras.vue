@@ -2,9 +2,9 @@
   <div id="portadaOtras">
     <v-img
       sizes="(max-width: 480px) 240px, (max-width: 960px) 480px, 1440px"
-      :src="`/images/varios/${fondo}@1x.${extension}`"
+      :src="`/images/varios/${fondo}@1x.webp`"
       :srcset="
-        `/images/varios/${fondo}@1x.${extension} 480w, /images/varios/${fondo}@2x.${extension} 960w, /images/varios/${fondo}@3x.${extension} 1440w`
+        `/images/varios/${fondo}@1x.webp 480w, /images/varios/${fondo}@2x.webp 960w, /images/varios/${fondo}@3x.webp 1440w`
       "
       alt="`Fondo ${titulo}`"
       height="300px"
@@ -25,12 +25,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   props: ["titulo", "fondo"],
-  computed: {
-    ...mapGetters(["extension"])
-  }
 };
 </script>
 

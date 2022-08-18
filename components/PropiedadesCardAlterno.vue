@@ -1,18 +1,10 @@
 <template>
   <div class="alterno">
     <v-card tile nuxt :to="`/propiedades/${slug}`" hover light>
-      <v-img :src="imagen" :alt="titulo" height="180">
-        <v-chip
-          large
-          label
-          class="valor white--text"
-          v-if="'' != precio || '' != preciouf"
-        >
-          <precio :valor="precio" v-if="'' != precio"></precio>
-          <precioUf
-            :valor="preciouf"
-            v-if="'' != preciouf && '' == precio"
-          ></precioUf>
+      <v-img :src="imagen" :alt="titulo" height="180" v-if="imagen">
+        <v-chip large label class="valor white--text">
+          <precio :valor="precio" v-if="precio"></precio>
+          <precioUf :valor="preciouf" v-if="preciouf && !precio"></precioUf>
         </v-chip>
       </v-img>
       <v-card-subtitle class="py-1">
@@ -27,18 +19,12 @@
             <div class="d-flex flex-column">
               <strong v-text="titulo"></strong>
               <span class="pt-1"
-                ><div
-                  v-if="'' != direccion && '' === ciudad"
-                  v-text="direccion"
-                ></div>
+                ><div v-if="direccion && !ciudad" v-text="direccion"></div>
                 <div
-                  v-if="'' != direccion && '' != ciudad"
+                  v-if="direccion && ciudad"
                   v-text="`${direccion} , ${ciudad}`"
                 ></div>
-                <div
-                  v-if="'' === direccion && '' != ciudad"
-                  v-text="ciudad"
-                ></div>
+                <div v-if="!direccion && ciudad" v-text="ciudad"></div>
               </span>
             </div>
           </v-col>
@@ -48,24 +34,24 @@
       <v-card-actions>
         <v-row no-gutters>
           <v-col cols="5" class="pa-0">
-            <v-list-item class="d-flex align-center" v-if="'' != area">
+            <v-list-item class="d-flex align-center" v-if="area">
               <v-icon class="pr-1">mdi-floor-plan</v-icon>{{ area }}&nbsp;mt2
             </v-list-item>
           </v-col>
           <v-col cols="7">
             <v-row no-gutters class="d-flex align-center justify-end">
-              <v-col cols="4" v-if="'' != habitaciones" class="pa-0">
+              <v-col cols="4" v-if="habitaciones" class="pa-0">
                 <v-list-item class="d-flex align-center">
                   <v-icon class="pr-2">mdi-bed-queen-outline</v-icon
                   >{{ habitaciones }}
                 </v-list-item>
               </v-col>
-              <v-col cols="4" v-if="'' != banos" class="pa-0">
+              <v-col cols="4" v-if="banos" class="pa-0">
                 <v-list-item class="d-flex align-center">
                   <v-icon class="pr-2">mdi-shower</v-icon>{{ banos }}
                 </v-list-item>
               </v-col>
-              <v-col cols="4" v-if="'' != automv" class="pa-0">
+              <v-col cols="4" v-if="automv" class="pa-0">
                 <v-list-item class="d-flex align-center">
                   <v-icon class="pr-2">mdi-car</v-icon>
                 </v-list-item>

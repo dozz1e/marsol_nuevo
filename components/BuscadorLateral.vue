@@ -123,13 +123,13 @@ export default {
   components: {
     PropiedadesCardAlterno,
     Ultimas,
-    Tags,
+    Tags
   },
   props: {
     tgs: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   data: () => ({
     valido: false,
@@ -142,32 +142,38 @@ export default {
     tituloBus: false,
     estacionamiento: false,
     piezas: 10,
-    metros: 10000,
+    metros: 10000
   }),
   computed: {
-    ...mapGetters(["listadoCiudades", "listadoPropiedades"]),
+    ...mapGetters(["listadoCiudades", "listadoPropiedades"])
   },
   methods: {
     buscarPropiedad() {
       this.tituloBus = true;
-      this.prpds = this.listadoPropiedades.filter((pro) => {
+      this.prpds = this.listadoPropiedades.filter(pro => {
         let tp = true,
           op = true,
           ci = true,
           are = true,
           piz = true,
           est = true;
-        if ("" != this.tipo) if (this.tipo != pro.categoria) tp = false;
+        if ("" != this.tipo)
+          if (this.tipo != pro.categoriaGraphql.categoria) tp = false;
         if ("" != this.operacion)
-          if (this.operacion != pro.operacion) op = false;
-        if ("" != this.ciudad) if (this.ciudad != pro.ciudad) ci = false;
+          if (this.operacion != pro.operacion.operacion) op = false;
+        if ("" != this.ciudad)
+          if (this.ciudad != pro.direccion.ciudad) ci = false;
         if (this.estacionamiento)
-          if (!pro.incluye.includes("Estacionamiento")) est = false;
+          if (
+            pro.incluye.incluye &&
+            !pro.incluye.incluye.includes("Estacionamiento")
+          )
+            est = false;
         if (10000 > this.metros) {
-          if (this.numero(pro.area_total) > this.metros) are = false;
+          if (this.numero(pro.datos.areaTotal) > this.metros) are = false;
         }
-        if ("" != pro.habitaciones)
-          if (pro.habitaciones > this.piezas) piz = false;
+        if ("" != pro.datos.habitaciones)
+          if (pro.datos.habitaciones > this.piezas) piz = false;
         if (tp && op && ci && est && are && piz) return pro;
       });
       this.$emit("ppdds", this.prpds);
@@ -188,21 +194,12 @@ export default {
       this.tituloBus = false;
       this.$emit("borrado");
     },
-    imagenPro(pro) {
-      let imgpro = "";
-      pro.yoast_meta.forEach((yoa) => {
-        if ("og:image" === yoa.property) {
-          imgpro = yoa.content;
-        }
-      });
-      return imgpro;
-    },
     movil(pro) {
       let movil = "";
       if (pro.incluye.includes("Estacionamiento")) movil = "1";
       return movil;
-    },
-  },
+    }
+  }
 };
 </script>
 
