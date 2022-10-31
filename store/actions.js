@@ -1,13 +1,10 @@
-const base =
-  "https://marsolpropiedades.cl/data/wp-json/wp/v2/ms-propiedades?categories=2";
-
 export default {
   async listaPropiedades({ commit, state }) {
     const propiedades = await this.$axios.post(
       "https://marsolpropiedades.cl/data/graphql",
       {
         query: `{
-          propiedades(first: 100, where: {categoryId: 2}) {
+          propiedades(where: {categoryId: 2}) {
             nodes {
               title
               slug
@@ -88,7 +85,8 @@ export default {
         if (3 >= aux) {
           arrAux.push(pro);
           aux++;
-        } else {
+        }
+        if( 3 < aux){
           aux = 1;
           importantes.push(arrAux);
           arrAux = [];
