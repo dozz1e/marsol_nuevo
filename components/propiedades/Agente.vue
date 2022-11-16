@@ -64,9 +64,6 @@ export default {
       default: "rgba(255,255,255,.5)"
     }
   },
-  computed: {
-    ...mapGetters(["extension"])
-  }
 };
 </script>
 

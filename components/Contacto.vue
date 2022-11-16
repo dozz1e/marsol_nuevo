@@ -17,8 +17,7 @@
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>
-            <a href="tel:+56995999796">+56 9 9599 9796</a> /
-            <a href="tel:+56983633829">+56 9 8363 3829</a>
+            <a href="tel:+56995999796">+56 9 9599 9796</a>
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -39,7 +38,7 @@
           <v-icon :color="colorIcono">mdi-alarm</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title> Lunes – Viernes: 9AM – 7PM </v-list-item-title>
+          <v-list-item-title> Lunes – Viernes: 09:00 – 19:00 </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>

@@ -34,6 +34,9 @@
                   <section class="compartir">
                     <compartir :propiedad="soloPropiedad"></compartir>
                   </section>
+                  <section class="video" v-if="soloPropiedad.youtube.youtube">
+                    <video-propiedad :src="soloPropiedad.youtube.youtube" :name="soloPropiedad.title"></video-propiedad>
+                  </section>
                 </v-tab-item>
                 <v-tab-item>
                   <section class="descripcion">
@@ -121,7 +124,8 @@ import Tags from "@/components/propiedades/Tags";
 import Ultimas from "@/components/propiedades/Ultimas";
 import Agente from "@/components/propiedades/Agente";
 import Foot from "@/components/Foot";
-import Listado from "~/components/propiedades/Listado.vue";
+import Listado from "@/components/propiedades/Listado.vue";
+import VideoPropiedad from "@/components/propiedades/VideoPropiedad.vue";
 
 export default {
   data: () => ({
@@ -140,7 +144,8 @@ export default {
     Tags,
     Ultimas,
     Foot,
-    Listado
+    Listado,
+    VideoPropiedad
   },
 
   head() {

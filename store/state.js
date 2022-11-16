@@ -3,11 +3,7 @@ export default () => ({
   propiedades: [],
   propiedad: {},
   mapa: {},
-  extension: null,
   ultimas: [],
-  importantes: [],
-  tags: [],
-  ciudades: [],
   venta: [],
   arriendo: [],
   agentes: [

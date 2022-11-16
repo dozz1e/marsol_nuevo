@@ -2,9 +2,9 @@
   <div id="servicios">
     <v-img
       sizes="(max-width: 1904px) 100vw, 1904px"
-      :src="`/images/varios/inicio.${extension}`"
+      :src="`/images/varios/inicio.webp`"
       :srcset="
-        `/images/varios/inicio@1x.${extension} 960w, /images/varios/inicio@2x.${extension} 1264w, /images/varios/inicio@3x.${extension} 1904w`
+        `/images/varios/inicio@1x.webp 960w, /images/varios/inicio@2x.webp 1264w, /images/varios/inicio@3x.webp 1904w`
       "
       alt="Fondo de Viña del Mar"
       gradient="to top right, rgba(59,58,64,.2), rgba(59,58,64,.2)"
@@ -73,7 +73,6 @@ export default {
     ]
   }),
   computed: {
-    ...mapGetters(["extension"]),
     alto() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":

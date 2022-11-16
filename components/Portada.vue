@@ -3,10 +3,10 @@
     <v-carousel cycle hide-delimiters show-arrows-on-hover height="600">
       <v-carousel-item v-for="(item, i) in items" :key="i" eager>
         <v-img
-          :src="`${item.src}.${extension}`"
+          :src="`${item.src}.webp`"
           sizes="(max-width: 1904px) 100vw, 1904px"
           :srcset="
-            `${item.src}@1x.${extension} 960w, ${item.src}@2x.${extension} 1264w, ${item.src}@3x.${extension} 1904w`
+            `${item.src}@1x.webp 960w, ${item.src}@2x.webp 1264w, ${item.src}@3x.webp 1904w`
           "
           height="600"
           :alt="item.nombre"
@@ -63,7 +63,7 @@ export default {
     ]
   }),
   computed: {
-    ...mapGetters(["extension", "listadoDichos"])
+    ...mapGetters(["listadoDichos"])
   }
 };
 </script>

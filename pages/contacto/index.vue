@@ -22,7 +22,7 @@
           </v-col>
           <v-col cols="12" sm="6">
             <v-img
-              :src="`/images/contacto/lateral.${extension}`"
+              :src="`/images/contacto/lateral.webp`"
               alt="Contacto"
             ></v-img>
           </v-col>
@@ -67,9 +67,6 @@ export default {
     oscuro: false,
     ocultar: false
   }),
-  computed: {
-    ...mapGetters(["extension"])
-  },
   head() {
     return {
       title: "Contacto MarSol | MarSol Propiedades",

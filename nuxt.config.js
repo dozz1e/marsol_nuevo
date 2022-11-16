@@ -118,6 +118,18 @@ export default {
         media: "print",
         onload: "this.media='all'"
       }
+    ],
+    script: [
+      {
+        type: 'module',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-ML88QTCTJF',
+        defer: true,
+      },
+      {
+        type: 'module',
+        src: 'https://marsolpropiedades.cl/js/google.js',
+        defer: true,
+      }
     ]
   },
 

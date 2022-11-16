@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col cols="12" sm="5" class="pa-3">
           <v-img
-            :src="`/images/agentes/${agente.slug}.${extension}`"
+            :src="`/images/agentes/${agente.slug}.webp`"
             :alt="agente.nombre"
             :height="$vuetify.breakpoint.xsOnly ? '' : '150'"
             width="100%"
@@ -63,9 +63,6 @@ export default {
       type: String,
       default: "rgba(255,255,255,.5)",
     },
-  },
-  computed: {
-    ...mapGetters(["extension"]),
   },
 };
 </script>

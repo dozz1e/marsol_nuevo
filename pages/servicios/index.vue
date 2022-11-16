@@ -19,7 +19,7 @@
           </v-col>
           <v-col cols="12" sm="6">
             <v-img
-              :src="`/images/agentes/nosotros.${extension}`"
+              :src="`/images/agentes/nosotros.webp`"
               alt="Equipo"
               class="servicios__img"
             ></v-img>
@@ -41,7 +41,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-card v-bind="attrs" v-on="on" hover height="200">
                     <v-img
-                      :src="`/images/servicios/${index}.${extension}`"
+                      :src="`/images/servicios/${index}.webp`"
                       height="200"
                       gradient="to top right, rgba(0,0,0,.5), rgba(0,0,0,.5)"
                     >
@@ -58,7 +58,7 @@
                 <template>
                   <div>
                     <v-img
-                      :src="`/images/servicios/${index}.${extension}`"
+                      :src="`/images/servicios/${index}.webp`"
                       height="250"
                     ></v-img>
                     <div class="dialogContent pa-5">
@@ -167,9 +167,6 @@ export default {
       ]
     };
   },
-  computed: {
-    ...mapGetters(["extension"])
-  }
 };
 </script>
 

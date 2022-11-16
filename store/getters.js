@@ -1,12 +1,45 @@
 export default {
-  extension: state => state.extension,
   listadoPropiedades: state => state.propiedades,
   listadoUltimas: state => state.ultimas,
   soloPropiedad: state => state.propiedad,
   soloMapa: state => state.mapa,
   listadoAgentes: state => state.agentes,
-  listadoTags: state => state.tags,
-  listadoCiudades: state => state.ciudades,
-  listadoImportantes: state => state.importantes,
-  listadoDichos: state => state.dichos
-};
+  listadoDichos: state => state.dichos,
+  listadoImportantes: state => {
+    let importantes = []
+    let arrAux = []
+    let aux = 1
+    state.propiedades.forEach(pro => {
+      if ("Alto" === pro.importancia.importancia) {
+        if (3 >= aux) {
+          arrAux.push(pro);
+          aux++;
+        }
+        if(3 < aux){
+          aux = 1;
+          importantes.push(arrAux);
+          arrAux = [];
+        }
+      }
+    });
+    return importantes
+  },
+  listadoCiudades: state => {
+    let ciudades = [];
+    state.propiedades.forEach(pro => {
+      if (!ciudades.includes(pro.direccion.ciudad) && pro.direccion.ciudad) {
+        ciudades.push(pro.direccion.ciudad);
+      }
+    })
+    return ciudades
+  },
+  listadoTags: state => {
+    let tags = ["venta", "arriendo"];
+    state.propiedades.forEach(pro => {
+      if (!tags.includes(pro.categoriaGraphql.categoria.toLowerCase()) && pro.categoriaGraphql.categoria) {
+        tags.push(pro.categoriaGraphql.categoria.toLowerCase());
+      }
+    })
+    return tags
+  },
+}
