@@ -1,46 +1,24 @@
 <template>
   <div id="portada-pro">
-    <v-img
-      :src="imagen"
-      :alt="nombre"
-      class="mt-0 portada-image"
-      gradient="to top right, rgba(59,58,64,.33), rgba(59,58,64,.33)"
-    >
-      <v-img src="/images/fondos/header.svg" alt="Fondo Header">
-        <v-container>
-          <div class="portada-image__contenido">
-            <div class="contenido d-flex align-end text-center">
-              <div
-                class="d-flex flex-column align-center portada-image__text mb-15"
-              >
-                <v-row>
-                  <v-col cols="12" class="d-flex align-center py-0">
-                    <h1 v-text="nombre" class="white--text text-left"></h1>
-                  </v-col>
-                  <v-col cols="12" class="d-flex flex-column">
-                    <span class="white--text text-left"
-                      ><n-link
-                        :to="`/links/${categoria}`"
-                        v-text="
-                          categoria.charAt(0).toUpperCase() + categoria.slice(1)
-                        "
-                        class="white--text"
-                      ></n-link>
-                      /
-                      <n-link
-                        :to="`/links/${opera}`"
-                        v-text="opera.charAt(0).toUpperCase() + opera.slice(1)"
-                        class="white--text"
-                      ></n-link
-                    ></span>
-                  </v-col>
-                </v-row>
-              </div>
-            </div>
+    <v-container>
+      <div class="portada-image__contenido">
+        <div class="contenido d-flex align-end text-center">
+          <div class="d-flex flex-column align-center portada-image__text mb-5">
+            <v-row>
+              <v-col cols="12" class="d-flex align-center py-0">
+                <h1 v-text="nombre" class="text-left text-h2"></h1>
+              </v-col>
+              <v-col cols="12" class="d-flex flex-column pt-0">
+                <span class="text-left"><n-link :to="`/links/${categoria.toLowerCase()}`" v-text="
+                categoria" class="red--text"></n-link>
+                  /
+                  <n-link :to="`/links/${opera.toLowerCase()}`" v-text="opera" class="red--text"></n-link></span>
+              </v-col>
+            </v-row>
           </div>
-        </v-container>
-      </v-img>
-    </v-img>
+        </div>
+      </div>
+    </v-container>
   </div>
 </template>
 
@@ -51,9 +29,10 @@ export default {
 </script>
 
 <style lang="sass">
+.v-slide-group__prev--disabled
+  display: none !important
 #portada-pro
-  height: 400px
-  text-shadow: 1px 1px 1px black
+  background: #efefef
   @media (min-width: 960px)
     height: 250px
   .contenido

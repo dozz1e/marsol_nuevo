@@ -5,37 +5,18 @@
       <v-row>
         <v-col cols="12" sm="8">
           <v-row v-if="0 < filtroPropiedades.length">
-            <v-col
-              cols="12"
-              v-for="(pro, index) in filtroPropiedades"
-              :key="index"
-              nuxt
-              :to="`/propiedades/${pro.slug}`"
-              sm="6"
-            >
-              <propiedades-card-alterno
-                :imagen="pro.featuredImage.node.link"
-                :titulo="pro.title"
-                :direccion="pro.direccion.direccion"
-                :categoria="pro.categoriaGraphql.categoria"
-                :operacion="pro.operacion.operacion"
-                :area="pro.datos.areaTotal"
-                :habitaciones="pro.datos.habitaciones"
-                :banos="pro.datos.banos"
-                :automv="movil(pro)"
-                :precio="pro.precio.precio"
-                :preciouf="pro.precio.precioUf"
-                :slug="pro.slug"
-                :ciudad="pro.direccion.ciudad"
-              ></propiedades-card-alterno>
+            <v-col cols="12" v-for="(pro, index) in filtroPropiedades" :key="index" nuxt
+              :to="`/propiedades/${pro.slug}`" sm="6">
+              <propiedades-card-alterno :imagen="pro.featuredImage.node.link" :titulo="pro.title"
+                :direccion="pro.direccion.direccion" :categoria="pro.categoriaGraphql.categoria"
+                :operacion="pro.operacion.operacion" :area="pro.datos.areaTotal" :habitaciones="pro.datos.habitaciones"
+                :banos="pro.datos.banos" :automv="movil(pro)" :precio="pro.precio.precio"
+                :preciouf="pro.precio.precioUf" :slug="pro.slug"
+                :ciudad="pro.direccion.ciudad"></propiedades-card-alterno>
             </v-col>
           </v-row>
           <v-row v-else>
-            <v-card
-              width="100%"
-              height="150"
-              class="d-flex align-center justify-center text-center mt-3"
-            >
+            <v-card width="100%" height="150" class="d-flex align-center justify-center text-center mt-3">
               <v-card-title>
                 No hay resultados para su búsqueda. Seleccione otro criterio.
               </v-card-title>
@@ -106,10 +87,11 @@ export default {
     ...mapGetters(["listadoPropiedades"]),
     filtroPropiedades() {
       let id = this.$route.params.id;
+
       let pro = this.listadoPropiedades.filter(pdds => {
-        let ope = pdds.operacion.toLowerCase();
-        let cate = pdds.categoria.toLowerCase();
-        let city = pdds.ciudad
+        let ope = pdds.operacion.operacion.toLowerCase();
+        let cate = pdds.categoriaGraphql.categoria.toLowerCase();
+        let city = pdds.direccion.ciudad
           .toLowerCase()
           .replace(/\s+/g, "-")
           .normalize("NFD")
@@ -127,6 +109,7 @@ export default {
         }
       });
       return pro;
+      // return false
     }
   },
   methods: {

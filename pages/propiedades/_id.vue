@@ -1,14 +1,9 @@
 <template>
-  <div id="propiedad" v-if="null != soloPropiedad">
-    <portada-prop
-      :imagen="soloPropiedad.featuredImage.node.link"
-      :direccion="soloPropiedad.direccion.ciudad"
-      :categoria="soloPropiedad.categoriaGraphql.categoria"
-      :operacion="soloPropiedad.operacion.operacion"
-      :nombre="soloPropiedad.title"
-      :opera="soloPropiedad.operacion.operacion"
-    ></portada-prop>
-    <v-container>
+  <div v-if="null != soloPropiedad">
+    <portada-prop :imagen="soloPropiedad.featuredImage.node.sourceUrl" :direccion="soloPropiedad.direccion.ciudad"
+      :categoria="soloPropiedad.categoriaGraphql.categoria" :nombre="soloPropiedad.title"
+      :opera="soloPropiedad.operacion.operacion"></portada-prop>
+    <v-container id="propiedad">
       <v-row class="body">
         <v-col cols="12" md="8" class="main">
           <carrusel :id="propiedad(3)"></carrusel>
@@ -18,18 +13,16 @@
                 <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
                 <v-tab-item>
                   <section class="datos">
-                    <datos
-                      :propiedad="{
-                        titulo: soloPropiedad.title,
-                        categoria: soloPropiedad.categoriaGraphql.categoria,
-                        operacion: soloPropiedad.operacion.operacion,
-                        valor: soloPropiedad.precio.precio,
-                        uf: soloPropiedad.precio.precioUf,
-                        datos: soloPropiedad.datos,
-                        direccion: direccionPropi,
-                        estacionamiento: estacionamiento
-                      }"
-                    ></datos>
+                    <datos :propiedad="{
+                      titulo: soloPropiedad.title,
+                      categoria: soloPropiedad.categoriaGraphql.categoria,
+                      operacion: soloPropiedad.operacion.operacion,
+                      valor: soloPropiedad.precio.precio,
+                      uf: soloPropiedad.precio.precioUf,
+                      datos: soloPropiedad.datos,
+                      direccion: direccionPropi,
+                      estacionamiento: estacionamiento
+                    }"></datos>
                   </section>
                   <section class="compartir">
                     <compartir :propiedad="soloPropiedad"></compartir>
@@ -40,46 +33,31 @@
                 </v-tab-item>
                 <v-tab-item>
                   <section class="descripcion">
-                    <descripcion
-                      titulo="Detalles"
-                      :texto="soloPropiedad.detallesAdicionales.detalles"
-                    ></descripcion>
+                    <descripcion titulo="Detalles" :texto="soloPropiedad.detallesAdicionales.detalles"></descripcion>
                   </section>
                 </v-tab-item>
                 <v-tab-item>
                   <section class="incluye">
-                    <listado
-                      titulo="Incluye"
-                      :datos="soloPropiedad.incluye.incluye"
-                      v-if="soloPropiedad.incluye.incluye"
-                    ></listado>
-                    <listado
-                      titulo="Espacios Comunes"
-                      :datos="soloPropiedad.espaciosComunes.espaciosComunes"
-                      v-if="soloPropiedad.espaciosComunes.espaciosComunes"
-                    ></listado>
-                    <div
-                      v-if="
-                        !soloPropiedad.espaciosComunes.espaciosComunes &&
-                          !soloPropiedad.incluye.incluye
-                      "
-                    >
+                    <listado titulo="Incluye" :datos="soloPropiedad.incluye.incluye"
+                      v-if="soloPropiedad.incluye.incluye"></listado>
+                    <listado titulo="Espacios Comunes" :datos="soloPropiedad.espaciosComunes.espaciosComunes"
+                      v-if="soloPropiedad.espaciosComunes.espaciosComunes"></listado>
+                    <div v-if="
+                      !soloPropiedad.espaciosComunes.espaciosComunes &&
+                      !soloPropiedad.incluye.incluye
+                    ">
                       <h3>Sin Extras</h3>
                     </div>
                   </section>
                 </v-tab-item>
                 <v-tab-item>
                   <section class="mapa">
-                    <div
-                      v-if="
-                        soloPropiedad.direccion.ciudad ||
-                          soloPropiedad.direccion.direccion
-                      "
-                    >
-                      <mapa
-                        :ciudad="soloPropiedad.direccion.ciudad"
-                        :direccion="soloPropiedad.direccion.direccion"
-                      ></mapa>
+                    <div v-if="
+                      soloPropiedad.direccion.ciudad ||
+                      soloPropiedad.direccion.direccion
+                    ">
+                      <mapa :ciudad="soloPropiedad.direccion.ciudad" :direccion="soloPropiedad.direccion.direccion">
+                      </mapa>
                     </div>
                     <div v-else>
                       <h3>Sin Mapa</h3>
@@ -99,10 +77,12 @@
               <section class="tags">
                 <tags></tags>
               </section>
-              <v-divider class="my-5"></v-divider>
-              <section class="ultimas">
-                <ultimas></ultimas>
-              </section>
+              <div v-if="!$vuetify.breakpoint.mobile">
+                <v-divider class="my-5"></v-divider>
+                <section class="ultimas">
+                  <ultimas></ultimas>
+                </section>
+              </div>
             </v-card>
           </aside>
         </v-col>
@@ -132,6 +112,8 @@ export default {
     tab: null,
     items: ["Información", "Detalles", "Extras", "Mapa"]
   }),
+
+  layout: 'propiedad',
 
   components: {
     Agente,
