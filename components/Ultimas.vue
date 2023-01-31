@@ -2,25 +2,14 @@
   <div id="ultimas">
     <h3>Últimas propiedades</h3>
     <v-list color="transparent" dark>
-      <v-list-item
-        v-for="(ult, index) in listadoUltimas"
-        :key="index"
-        nuxt
-        :to="`/propiedades/${ult.slug}`"
-        color="#37353d"
-      >
+      <v-list-item v-for="(ult, index) in listadoUltimas" :key="index" nuxt :to="`/propiedades/${ult.slug}`"
+        color="#37353d">
         <v-list-item-avatar horizontal tile class="ml-1">
-          <v-img :src="ult.featuredImage.node.link" :alt="ult.title"></v-img>
+          <v-img :src="ult.featuredImage.node.sourceUrl" :alt="ult.title"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title
-            v-text="ult.title"
-            class="white--text"
-          ></v-list-item-title>
-          <v-list-item-subtitle
-            v-text="ult.direccion.ciudad"
-            class="white--text"
-          ></v-list-item-subtitle>
+          <v-list-item-title v-text="ult.title" class="white--text"></v-list-item-title>
+          <v-list-item-subtitle v-text="ult.direccion.ciudad" class="white--text"></v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>

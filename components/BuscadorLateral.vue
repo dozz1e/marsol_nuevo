@@ -3,25 +3,13 @@
     <v-form ref="form" v-model="valido" class="pa-5" v-if="tgs">
       <v-row>
         <v-col cols="12" class="py-0">
-          <v-select
-            v-model="tipo"
-            :items="tipos"
-            label="Tipo de Propiedad"
-          ></v-select>
+          <v-select v-model="tipo" :items="tipos" label="Tipo de Propiedad"></v-select>
         </v-col>
         <v-col cols="12" class="py-0">
-          <v-select
-            v-model="operacion"
-            :items="operaciones"
-            label="Operación"
-          ></v-select>
+          <v-select v-model="operacion" :items="operaciones" label="Operación"></v-select>
         </v-col>
         <v-col cols="12" v-if="listadoCiudades != null" class="py-0">
-          <v-select
-            v-model="ciudad"
-            :items="listadoCiudades"
-            label="Ciudad"
-          ></v-select>
+          <v-select v-model="ciudad" :items="listadoCiudades" label="Ciudad"></v-select>
         </v-col>
         <v-col cols="12" class="buscador-slider">
           <v-card flat color="transparent">
@@ -29,24 +17,12 @@
               <v-icon class="pr-1" dark>mdi-floor-plan</v-icon>
               Área Total
               <v-spacer></v-spacer>
-              <v-input
-                v-if="10000 > metros"
-                hide-details
-                dark
-                class="buscador-slider__text"
-                >{{ `${metros} mt2` }}</v-input
-              >
-              <v-input v-else hide-details dark class="slider-text"
-                >Cualquiera</v-input
-              >
+              <v-input v-if="10000 > metros" hide-details dark class="buscador-slider__text">{{ `${metros} mt2`
+              }}</v-input>
+              <v-input v-else hide-details dark class="slider-text">Cualquiera</v-input>
             </v-subheader>
             <v-card-text class="pa-0">
-              <v-slider
-                v-model="metros"
-                min="0"
-                max="10000"
-                hide-details
-              ></v-slider>
+              <v-slider v-model="metros" min="0" max="10000" hide-details></v-slider>
             </v-card-text>
           </v-card>
         </v-col>
@@ -56,49 +32,23 @@
               <v-icon class="pr-1" dark>mdi-bed-queen-outline</v-icon>
               Piezas
               <v-spacer></v-spacer>
-              <v-input
-                v-if="10 > piezas"
-                hide-details
-                dark
-                class="buscador-slider__text"
-                >{{ piezas }}</v-input
-              >
-              <v-input v-else hide-details dark class="slider-text"
-                >Cualquiera</v-input
-              >
+              <v-input v-if="10 > piezas" hide-details dark class="buscador-slider__text">{{ piezas }}</v-input>
+              <v-input v-else hide-details dark class="slider-text">Cualquiera</v-input>
             </v-subheader>
             <v-card-text class="pa-0">
-              <v-slider
-                v-model="piezas"
-                min="0"
-                max="10"
-                hide-details
-              ></v-slider>
+              <v-slider v-model="piezas" min="0" max="10" hide-details></v-slider>
             </v-card-text>
           </v-card>
         </v-col>
         <v-col cols="12">
-          <v-switch
-            v-model="estacionamiento"
-            label="Estacionamiento"
-            dark
-          ></v-switch>
+          <v-switch v-model="estacionamiento" label="Estacionamiento" dark></v-switch>
         </v-col>
         <v-col cols="12" class="d-flex justify-end align-center">
           <v-btn plain large class="mr-4 white--text" @click="reset">
             Resetear
           </v-btn>
-          <v-btn
-            large
-            tile
-            depressed
-            @click="buscarPropiedad()"
-            color="#c93126"
-            class="white--text"
-            name="btn-buscar"
-            id="btn-buscar"
-            ><v-icon>mdi-magnify</v-icon></v-btn
-          >
+          <v-btn large tile depressed @click="buscarPropiedad()" color="#c93126" class="white--text" name="btn-buscar"
+            id="btn-buscar"><v-icon>mdi-magnify</v-icon></v-btn>
         </v-col>
       </v-row>
     </v-form>
@@ -106,8 +56,8 @@
     <v-col cols="12" class="buscador-tags pa-5">
       <tags></tags>
     </v-col>
-    <v-divider v-if="!tgs"></v-divider>
-    <v-col cols="12" v-if="!tgs" class="buscador-tags pa-5">
+    <v-divider></v-divider>
+    <v-col cols="12" class="buscador-tags pa-5">
       <ultimas></ultimas>
     </v-col>
   </div>

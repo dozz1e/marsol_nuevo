@@ -5,87 +5,47 @@
       <v-row>
         <v-col cols="12" sm="8">
           <v-row v-if="resulLateral">
-            <v-col
-              cols="12"
-              v-for="(pro, index) in listadoPropiedades"
-              :key="index"
-              nuxt
-              :to="`/propiedades/${pro.slug}`"
-              sm="6"
-            >
-              <propiedades-card-alterno
-                :imagen="pro.featuredImage.node.link"
-                :titulo="pro.title"
-                :direccion="pro.direccion.direccion"
-                :categoria="pro.categoriaGraphql.categoria"
-                :operacion="pro.operacion.operacion"
-                :area="pro.datos.areaTotal"
-                :habitaciones="pro.datos.habitaciones"
-                :banos="pro.datos.banos"
-                :automv="movil(pro)"
-                :precio="pro.precio.precio"
-                :preciouf="pro.precio.precioUf"
-                :slug="pro.slug"
-                :ciudad="pro.direccion.ciudad"
-              ></propiedades-card-alterno>
+            <v-col cols="12" v-for="(pro, index) in listadoPropiedades" :key="index" nuxt
+              :to="`/propiedades/${pro.slug}`" sm="6">
+              <propiedades-card-alterno :imagen="pro.featuredImage.node.sourceUrl" :titulo="pro.title"
+                :direccion="pro.direccion.direccion" :categoria="pro.categoriaGraphql.categoria"
+                :operacion="pro.operacion.operacion" :area="pro.datos.areaTotal" :habitaciones="pro.datos.habitaciones"
+                :banos="pro.datos.banos" :automv="movil(pro)" :precio="pro.precio.precio"
+                :preciouf="pro.precio.precioUf" :slug="pro.slug"
+                :ciudad="pro.direccion.ciudad"></propiedades-card-alterno>
             </v-col>
           </v-row>
           <v-row v-else-if="0 < listaP.length">
             <v-col cols="12">
               <h2>Listado de Propiedades({{ listaP.length }})</h2>
             </v-col>
-            <v-col
-              cols="12"
-              v-for="(pro, index) in listaP"
-              :key="index"
-              nuxt
-              :to="`/propiedades/${pro.slug}`"
-              sm="6"
-            >
-              <propiedades-card-alterno
-                :imagen="pro.featuredImage.node.link"
-                :titulo="pro.title"
-                :direccion="pro.direccion.direccion"
-                :categoria="pro.categoriaGraphql.categoria"
-                :operacion="pro.operacion.operacion"
-                :area="pro.datos.areaTotal"
-                :habitaciones="pro.datos.habitaciones"
-                :banos="pro.datos.banos"
-                :automv="movil(pro)"
-                :precio="pro.precio.precio"
-                :preciouf="pro.precio.precioUf"
-                :slug="pro.slug"
-                :ciudad="pro.direccion.ciudad"
-              ></propiedades-card-alterno>
+            <v-col cols="12" v-for="(pro, index) in listaP" :key="index" nuxt :to="`/propiedades/${pro.slug}`" sm="6">
+              <propiedades-card-alterno :imagen="pro.featuredImage.node.sourceUrl" :titulo="pro.title"
+                :direccion="pro.direccion.direccion" :categoria="pro.categoriaGraphql.categoria"
+                :operacion="pro.operacion.operacion" :area="pro.datos.areaTotal" :habitaciones="pro.datos.habitaciones"
+                :banos="pro.datos.banos" :automv="movil(pro)" :precio="pro.precio.precio"
+                :preciouf="pro.precio.precioUf" :slug="pro.slug"
+                :ciudad="pro.direccion.ciudad"></propiedades-card-alterno>
             </v-col>
           </v-row>
           <v-row v-else>
-            <v-card
-              width="100%"
-              height="150"
-              class="d-flex align-center justify-center text-center mt-3"
-            >
+            <v-card width="100%" height="150" class="d-flex align-center justify-center text-center mt-3">
               <v-card-title>
                 No hay resultados para su búsqueda. Seleccione otro criterio.
               </v-card-title>
             </v-card>
           </v-row>
-          <v-row
-            v-if="
-              (resulLateral && 0 === listadoPropiedades.length) ||
-                (!resulLateral && 0 === listaP.length)
-            "
-          >
+          <v-row v-if="
+            (resulLateral && 0 === listadoPropiedades.length) ||
+            (!resulLateral && 0 === listaP.length)
+          ">
             <v-col cols="12" sm="6" v-for="n in 4" :key="n">
               <v-skeleton-loader type="card, actions" tile></v-skeleton-loader>
             </v-col>
           </v-row>
         </v-col>
         <v-col cols="12" sm="4">
-          <buscador-lateral
-            @ppdds="ppdds"
-            @borrado="borrado"
-          ></buscador-lateral>
+          <buscador-lateral @ppdds="ppdds" @borrado="borrado"></buscador-lateral>
         </v-col>
       </v-row>
     </v-container>
