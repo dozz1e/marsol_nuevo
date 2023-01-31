@@ -89,14 +89,19 @@ export default {
       let id = this.$route.params.id;
 
       let pro = this.listadoPropiedades.filter(pdds => {
-        let ope = pdds.operacion.operacion.toLowerCase();
-        let cate = pdds.categoriaGraphql.categoria.toLowerCase();
+        let ope = pdds.operacion.operacion.toLowerCase().replace(/\s+/g, "-")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        let cate = pdds.categoriaGraphql.categoria.toLowerCase().replace(/\s+/g, "-")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
         let city = pdds.direccion.ciudad
           .toLowerCase()
           .replace(/\s+/g, "-")
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "");
-        switch (id) {
+        let ide = id.replace(/\s+/g, "-").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        switch (ide) {
           case ope:
             return true;
             break;
@@ -109,7 +114,6 @@ export default {
         }
       });
       return pro;
-      // return false
     }
   },
   methods: {
