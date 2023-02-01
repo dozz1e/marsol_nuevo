@@ -5,6 +5,9 @@ export default {
   SET_ULTIMAS(state, datos) {
     state.ultimas = datos;
   },
+  SET_VENDIDAS(state, datos) {
+    state.vendidas = datos;
+  },
   SET_PROPIEDAD(state, datos) {
     state.propiedad = datos;
   },

@@ -76,9 +76,6 @@ export default {
             nodes {
               title
               slug
-              youtube {
-                youtube
-              }
               precio {
                 precio
                 precioUf
@@ -95,19 +92,11 @@ export default {
               featuredImage {
                 node {
                   sourceUrl(size: MEDIUM)
-                  altText
-                  link
                 }
-              }
-              espaciosComunes {
-                espaciosComunes
               }
               direccion {
                 ciudad
                 direccion
-              }
-              detallesAdicionales {
-                detalles
               }
               datos {
                 areaTotal
@@ -117,20 +106,58 @@ export default {
               categoriaGraphql {
                 categoria
               }
-              agentes {
-                agentes
-              }
-              seo {
-                metaKeywords
-                metaDesc
-                title
-              }
             }
           }
         }`
       }
     );
     commit("SET_ULTIMAS", propiedades.data.data.propiedades.nodes);
+  },
+  async ultimasVendidas({ commit }) {
+    const propiedades = await this.$axios.post(
+      "https://marsolpropiedades.cl/data/graphql",
+      {
+        query: `{
+          propiedades(first: 6, where: {categoryId: 4}) {
+            nodes {
+              title
+              slug
+              precio {
+                precio
+                precioUf
+              }
+              operacion {
+                operacion
+              }
+              incluye {
+                incluye
+              }
+              importancia {
+                importancia
+              }
+              featuredImage {
+                node {
+                  sourceUrl(size: MEDIUM)
+                }
+              }
+              direccion {
+                ciudad
+                direccion
+              }
+              datos {
+                areaTotal
+                banos
+                habitaciones
+              }
+              categoriaGraphql {
+                categoria
+              }
+            }
+          }
+        }`
+      }
+    );
+    commit("SET_VENDIDAS", propiedades.data.data.propiedades.nodes);
   },
   quitarPropiedad({ commit }) {
     commit("SET_PROPIEDAD", null);

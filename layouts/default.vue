@@ -1,37 +1,15 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      v-model="drawer"
-      width="100%"
-      app
-      id="menu-mobile"
-      v-if="$vuetify.breakpoint.mobile"
-    >
+    <v-navigation-drawer v-model="drawer" width="100%" app id="menu-mobile" v-if="$vuetify.breakpoint.mobile">
       <Menu></Menu>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      flat
-      absolute
-      color="transparent"
-      id="menu-principal"
-      height="75"
-    >
+    <v-app-bar app flat absolute color="transparent" id="menu-principal" height="75">
       <v-container class="pa-0 d-flex align-center justify-space-between">
-        <v-app-bar-nav-icon
-          class="white--text"
-          v-if="$vuetify.breakpoint.mobile"
-          @click.stop="drawer = !drawer"
-        ></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon class="white--text" v-if="$vuetify.breakpoint.mobile"
+          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <n-link to="/">
-          <v-img
-            src="/logos/logo-completo-footer.png"
-            alt="Banner Cenakin"
-            height="65"
-            width="150"
-            contain
-          ></v-img>
+          <v-img src="/logos/logo-completo-footer.png" alt="Banner Cenakin" height="65" width="150" contain></v-img>
         </n-link>
         <Menu v-if="!$vuetify.breakpoint.mobile"></Menu>
       </v-container>
@@ -40,18 +18,8 @@
       <nuxt />
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            class="mx-2"
-            fab
-            dark
-            color="#43a047"
-            id="boton-whats"
-            href="https://wa.me/56995999796"
-            target="_blank"
-            v-on="on"
-            v-bind="attrs"
-            aria-label="Whatsapp"
-          >
+          <v-btn class="mx-2" fab dark color="#43a047" id="boton-whats" href="https://wa.me/56995999796" target="_blank"
+            v-on="on" v-bind="attrs" aria-label="Whatsapp">
             <v-icon dark> mdi-message-reply-text </v-icon>
           </v-btn>
         </template>
@@ -75,9 +43,10 @@ export default {
   mounted() {
     this.listaPropiedades();
     this.ultimasPropiedades();
+    this.ultimasVendidas();
   },
   methods: {
-    ...mapActions(["listaPropiedades", "ultimasPropiedades"]),
+    ...mapActions(["listaPropiedades", "ultimasPropiedades", "ultimasVendidas"]),
   },
 };
 </script>

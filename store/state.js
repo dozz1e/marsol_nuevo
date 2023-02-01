@@ -4,6 +4,7 @@ export default () => ({
   propiedad: {},
   mapa: {},
   ultimas: [],
+  vendidas: [],
   venta: [],
   arriendo: [],
   agentes: [

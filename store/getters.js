@@ -1,6 +1,7 @@
 export default {
   listadoPropiedades: state => state.propiedades,
   listadoUltimas: state => state.ultimas,
+  listadoVendidas: state => state.vendidas,
   soloPropiedad: state => state.propiedad,
   soloMapa: state => state.mapa,
   listadoAgentes: state => state.agentes,

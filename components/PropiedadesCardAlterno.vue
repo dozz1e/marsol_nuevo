@@ -1,10 +1,11 @@
 <template>
   <div class="alterno">
-    <v-card tile nuxt :to="`/propiedades/${slug}`" hover light>
+    <v-card tile nuxt :to="slug ? `/propiedades/${slug}` : ''" hover light>
       <v-img :src="imagen" :alt="titulo" height="180" v-if="imagen">
         <v-chip large label class="valor white--text">
-          <precio :valor="precio" v-if="precio"></precio>
-          <precioUf :valor="preciouf" v-if="preciouf && !precio"></precioUf>
+          <precio :valor="precio" v-if="precio && slug"></precio>
+          <precio-uf :valor="preciouf" v-if="preciouf && !precio && slug"></precio-uf>
+          <span v-if="!slug">VENDIDA</span>
         </v-chip>
       </v-img>
       <v-card-subtitle class="py-1">
@@ -18,14 +19,10 @@
           <v-col cols="10">
             <div class="d-flex flex-column">
               <strong v-text="titulo"></strong>
-              <span class="pt-1"
-                ><div v-if="direccion && !ciudad" v-text="direccion"></div>
-                <div
-                  v-if="direccion && ciudad"
-                  v-text="`${direccion} , ${ciudad}`"
-                ></div>
-                <div v-if="!direccion && ciudad" v-text="ciudad"></div>
-              </span>
+              <span class="pt-1"></span>
+              <div v-if="direccion && !ciudad" v-text="direccion"></div>
+              <div v-if="direccion && ciudad" v-text="`${direccion} , ${ciudad}`"></div>
+              <div v-if="!direccion && ciudad" v-text="ciudad"></div>
             </div>
           </v-col>
         </v-row>
@@ -42,8 +39,7 @@
             <v-row no-gutters class="d-flex align-center justify-end">
               <v-col cols="4" v-if="habitaciones" class="pa-0">
                 <v-list-item class="d-flex align-center">
-                  <v-icon class="pr-2">mdi-bed-queen-outline</v-icon
-                  >{{ habitaciones }}
+                  <v-icon class="pr-2">mdi-bed-queen-outline</v-icon>{{ habitaciones }}
                 </v-list-item>
               </v-col>
               <v-col cols="4" v-if="banos" class="pa-0">
@@ -115,7 +111,8 @@ export default {
     .valor
       background: rgba($rojo,.9)
       border-radius: 0 !important
-      font-size: 14px
+      font-size: 16px
+      font-weight: bold
       height: 45px
     .v-image
       .v-responsive__content

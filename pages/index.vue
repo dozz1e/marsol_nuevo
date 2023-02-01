@@ -7,6 +7,7 @@
     <slider-pro></slider-pro>
     <ultimas-inicio></ultimas-inicio>
     <servicios></servicios>
+    <ultimas-vendidas></ultimas-vendidas>
     <nosotros></nosotros>
     <foot></foot>
   </div>
@@ -17,6 +18,7 @@ import { mapGetters } from "vuex";
 import Portada from "~/components/Portada";
 import Buscador from "~/components/Buscador";
 import UltimasInicio from "~/components/UltimasInicio";
+import UltimasVendidas from "~/components/UltimasVendidas";
 import Servicios from "~/components/Servicios";
 import Nosotros from "~/components/Nosotros";
 import Foot from "~/components/Foot";
