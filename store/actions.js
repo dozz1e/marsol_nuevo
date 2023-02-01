@@ -67,52 +67,6 @@ export default {
     });
     commit("SET_PROPIEDADES", propiedades.data.data.propiedades.nodes);
   },
-  async ultimasPropiedades({ commit }) {
-    const propiedades = await this.$axios.post(
-      "https://marsolpropiedades.cl/data/graphql",
-      {
-        query: `{
-          propiedades(first: 6, where: {categoryId: 2}) {
-            nodes {
-              title
-              slug
-              precio {
-                precio
-                precioUf
-              }
-              operacion {
-                operacion
-              }
-              incluye {
-                incluye
-              }
-              importancia {
-                importancia
-              }
-              featuredImage {
-                node {
-                  sourceUrl(size: MEDIUM)
-                }
-              }
-              direccion {
-                ciudad
-                direccion
-              }
-              datos {
-                areaTotal
-                banos
-                habitaciones
-              }
-              categoriaGraphql {
-                categoria
-              }
-            }
-          }
-        }`
-      }
-    );
-    commit("SET_ULTIMAS", propiedades.data.data.propiedades.nodes);
-  },
   async ultimasVendidas({ commit }) {
     const propiedades = await this.$axios.post(
       "https://marsolpropiedades.cl/data/graphql",

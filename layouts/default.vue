@@ -42,11 +42,10 @@ export default {
   },
   mounted() {
     this.listaPropiedades();
-    this.ultimasPropiedades();
     this.ultimasVendidas();
   },
   methods: {
-    ...mapActions(["listaPropiedades", "ultimasPropiedades", "ultimasVendidas"]),
+    ...mapActions(["listaPropiedades", "ultimasVendidas"]),
   },
 };
 </script>

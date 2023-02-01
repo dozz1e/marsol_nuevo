@@ -2,9 +2,6 @@ export default {
   SET_PROPIEDADES(state, datos) {
     state.propiedades = datos;
   },
-  SET_ULTIMAS(state, datos) {
-    state.ultimas = datos;
-  },
   SET_VENDIDAS(state, datos) {
     state.vendidas = datos;
   },

@@ -1,12 +1,8 @@
 export default () => ({
   namespaced: true,
   propiedades: [],
-  propiedad: {},
   mapa: {},
-  ultimas: [],
   vendidas: [],
-  venta: [],
-  arriendo: [],
   agentes: [
     {
       id: 1,
