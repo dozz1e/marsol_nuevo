@@ -43,7 +43,7 @@ export default {
     return tags
   },
   listadoUltimas: state => {
-    let ultimas = state.propiedades.slice(-6)
+    let ultimas = state.propiedades.slice(0,6)
     return ultimas
   }
 }

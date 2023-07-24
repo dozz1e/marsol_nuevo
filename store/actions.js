@@ -4,7 +4,7 @@ export default {
       "https://marsolpropiedades.cl/data/graphql",
       {
         query: `{
-          propiedades(where: {categoryId: 2}, first: 100) {
+          propiedades(where: {categoryId: 2}, first: 30) {
             nodes {
               title
               slug
