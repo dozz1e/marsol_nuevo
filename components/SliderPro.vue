@@ -129,8 +129,8 @@ export default {
       font-size: 3rem
       font-weight: bold
       line-height: 3rem
-    @media (min-width: 960px)
+@media (min-width: 960px)
+  #sliderPro
+    .v-card
       height: 375px
-      .v-card__subtitle
-        font-size: 20px
 </style>

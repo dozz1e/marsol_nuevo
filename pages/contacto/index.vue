@@ -5,13 +5,8 @@
       <v-card class="py-5" flat>
         <v-row class="d-flex align-center">
           <v-col cols="12" sm="6">
-            <v-card-title class="display-1"
-              >¿Tiene alguna pregunta?</v-card-title
-            >
-            <v-card-text>
-              Te asesoramos sobre nuestros servicios inmobiliarios.<br />Envíanos
-              un mensaje y consúltanos sin ningún compromiso. Nos pondremos en
-              contacto contigo lo más pronto posible.
+            <v-card-text class="display-1">
+              Si necesitas comprar, vender o arrendar una propiedad, <strong>comunícate con nosotros</strong>
             </v-card-text>
             <contacto
               posicion="flex-column"
@@ -21,10 +16,7 @@
             ></contacto>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-img
-              :src="`/images/contacto/lateral.webp`"
-              alt="Contacto"
-            ></v-img>
+            <formulario></formulario>
           </v-col>
         </v-row>
       </v-card>
@@ -60,9 +52,10 @@ import { mapGetters } from "vuex";
 import PortadaOtras from "~/components/PortadaOtras";
 import Contacto from "~/components/Contacto";
 import Nosotros from "~/components/Nosotros";
+import Formulario from "~/components/Formulario";
 import Foot from "~/components/Foot";
 export default {
-  components: { PortadaOtras, Contacto, Nosotros, Foot },
+  components: { PortadaOtras, Contacto, Nosotros,Formulario, Foot },
   data: () => ({
     oscuro: false,
     ocultar: false

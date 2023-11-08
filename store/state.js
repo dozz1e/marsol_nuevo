@@ -1,6 +1,7 @@
 export default () => ({
   namespaced: true,
   propiedades: [],
+  indice: 0,
   mapa: {},
   vendidas: [],
   agentes: [

@@ -11,4 +11,7 @@ export default {
   SET_MAPA(state, datos) {
     state.mapa = datos;
   },
+  SET_INDICE(state, datos) {
+    state.indice = datos;
+  }
 };

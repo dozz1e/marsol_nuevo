@@ -97,7 +97,6 @@ export default {
     &__title
       height: 100px
       .card__title
-        font-size: 20px
         line-height: 1
       .card__sub
         font-size: 16px

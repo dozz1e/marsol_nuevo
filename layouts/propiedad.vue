@@ -1,12 +1,26 @@
 <template>
   <v-app>
+    <div id="aviso-top" class="pa-1 d-flex">
+      <div class="flex indices">
+        <ul>
+          <li><Reloj></Reloj></li>
+          <li><IndiceUf></IndiceUf></li>
+        </ul>
+      </div>
+      <div class="flex indices d-none d-sm-flex">
+        <ul class="end">
+          <li><v-icon color="red">mdi-email-outline</v-icon>contacto@marsolpropiedades.cl</li>
+          <li><v-icon color="red">mdi-phone-outline</v-icon>+56 9 9599 9796</li>
+        </ul>
+      </div>
+    </div>
     <v-navigation-drawer v-model="drawer" width="100%" app id="menu-mobile" v-if="$vuetify.breakpoint.mobile">
       <Menu></Menu>
     </v-navigation-drawer>
 
     <v-app-bar app flat absolute color="transparent" id="menu-principal" height="75">
       <v-container class="pa-0 d-flex align-center justify-space-between">
-        <v-app-bar-nav-icon class="black--text" v-if="$vuetify.breakpoint.mobile"
+        <v-app-bar-nav-icon class="black--text d-lg-none" v-if="$vuetify.breakpoint.mobile"
           @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <n-link to="/">
           <v-img src="/logos/logo-completo.png" alt="Banner Cenakin" height="65" width="150" contain></v-img>
@@ -31,6 +45,8 @@
 
 <script>
 import { mapActions } from "vuex";
+import Reloj from "~/components/Reloj";
+import IndiceUf from "~/components/IndiceUf";
 import Menu from "~/components/Menu";
 
 export default {
@@ -38,14 +54,17 @@ export default {
     drawer: false,
   }),
   components: {
+    Reloj,
+    IndiceUf,
     Menu,
   },
   mounted() {
     this.listaPropiedades();
-    this.ultimasPropiedades();
+    this.ultimasVendidas();
+    this.indiceUf();
   },
   methods: {
-    ...mapActions(["listaPropiedades", "ultimasPropiedades"]),
+    ...mapActions(["listaPropiedades","ultimasVendidas", "indiceUf"]),
   },
 };
 </script>
@@ -86,6 +105,9 @@ ul, ol
   .v-app-bar__nav-icon
     i
       font-size: 32px
+
+.indices
+  justify-content: end
 
 .precio, .valor
   background: $rojo !important

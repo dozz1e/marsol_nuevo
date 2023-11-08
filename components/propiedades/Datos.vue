@@ -1,10 +1,7 @@
 <template>
   <v-card flat class="datos">
     <v-card-text>
-      <n-link :to="`/links/${propiedad.categoria.toLowerCase()}`" v-text="propiedad.categoria.toUpperCase()"
-        class="link-red"></n-link>
-      EN
-      <n-link :to="`/links/${propiedad.operacion.toLowerCase()}`" v-text="propiedad.operacion.toUpperCase()"
+      <n-link :to="`/links/${propiedad.categoria.toLowerCase()}`" v-text="propiedad.categoria.toUpperCase()" class="link-red"></n-link> EN <n-link :to="`/links/${propiedad.operacion.toLowerCase()}`" v-text="propiedad.operacion.toUpperCase()"
         class="link-red"></n-link>
       <div class="pt-1 pb-3">
         <h2 class="text-h4 black--text">{{ propiedad.titulo }}</h2>

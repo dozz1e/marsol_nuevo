@@ -72,7 +72,7 @@ export default {
       "https://marsolpropiedades.cl/data/graphql",
       {
         query: `{
-          propiedades(first: 6, where: {categoryId: 4}) {
+          propiedades(first: 3, where: {categoryId: 4}) {
             nodes {
               title
               slug
@@ -112,6 +112,10 @@ export default {
       }
     );
     commit("SET_VENDIDAS", propiedades.data.data.propiedades.nodes);
+  },
+  async indiceUf({ commit }) {
+    const indice = await this.$axios.get("https://mindicador.cl/api/uf");
+    commit("SET_INDICE", indice.data.serie[0].valor);
   },
   quitarPropiedad({ commit }) {
     commit("SET_PROPIEDAD", null);

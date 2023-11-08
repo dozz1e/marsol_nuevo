@@ -9,10 +9,9 @@
                 <h1 v-text="nombre" class="text-left text-h2"></h1>
               </v-col>
               <v-col cols="12" class="d-flex flex-column pt-0">
-                <span class="text-left"><n-link :to="`/links/${categoria.toLowerCase()}`" v-text="
-                categoria" class="red--text"></n-link>
-                  /
-                  <n-link :to="`/links/${opera.toLowerCase()}`" v-text="opera" class="red--text"></n-link></span>
+                <span class="text-left">
+                  <n-link :to="`/links/${categoria.toLowerCase()}`" v-text="categoria" class="red--text"></n-link> / <n-link :to="`/links/${opera.toLowerCase()}`" v-text="opera" class="red--text"></n-link>
+                </span>
               </v-col>
             </v-row>
           </div>
@@ -43,9 +42,7 @@ export default {
     @media (min-width: 960px)
       height: 250px
     &__contenido
-      height: 400px
-      @media (min-width: 960px)
-        height: 250px
+      height: 250px
       h1
         line-height: 1.1
     .logo

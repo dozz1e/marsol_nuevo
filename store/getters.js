@@ -5,6 +5,7 @@ export default {
   soloMapa: state => state.mapa,
   listadoAgentes: state => state.agentes,
   listadoDichos: state => state.dichos,
+  mostrarIndice: state => state.indice,
   listadoImportantes: state => {
     let importantes = []
     let arrAux = []

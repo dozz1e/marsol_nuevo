@@ -73,12 +73,12 @@
             <section class="contacto">
               <agente :agente="listadoAgentes[0]"></agente>
             </section>
-            <v-card dark tile class="mt-3 pa-5" color="#37353d">
-              <section class="tags">
+            <v-card dark tile class="mt-3 pa-5" color="#37353d" v-if="!$vuetify.breakpoint.mobile">
+              <!--<section class="tags">
                 <tags></tags>
-              </section>
-              <div v-if="!$vuetify.breakpoint.mobile">
-                <v-divider class="my-5"></v-divider>
+              </section>-->
+              <div>
+                <!--<v-divider class="my-5"></v-divider>-->
                 <section class="ultimas">
                   <ultimas></ultimas>
                 </section>
