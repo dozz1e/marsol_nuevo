@@ -2,6 +2,7 @@
   <div v-if="images" class="carrusel">
     <v-carousel height="600" hide-delimiters>
       <v-carousel-item
+        eager
         v-for="(image, i) in images"
         :key="i"
         :src="image.sourceUrl"
