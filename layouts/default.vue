@@ -9,20 +9,45 @@
       </div>
       <div class="flex indices d-none d-sm-flex">
         <ul class="end">
-          <li><v-icon color="red">mdi-email-outline</v-icon>contacto@marsolpropiedades.cl</li>
+          <li>
+            <v-icon color="red">mdi-email-outline</v-icon
+            >contacto@marsolpropiedades.cl
+          </li>
           <li><v-icon color="red">mdi-phone-outline</v-icon>+56 9 9599 9796</li>
         </ul>
       </div>
     </div>
-    <v-navigation-drawer v-model="drawer" width="100%" app id="menu-mobile" v-if="$vuetify.breakpoint.mobile">
+    <v-navigation-drawer
+      v-model="drawer"
+      width="100%"
+      app
+      id="menu-mobile"
+      v-if="$vuetify.breakpoint.mobile"
+    >
       <Menu></Menu>
     </v-navigation-drawer>
-    <v-app-bar app flat absolute color="transparent" id="menu-principal" height="75">
+    <v-app-bar
+      app
+      flat
+      absolute
+      color="transparent"
+      id="menu-principal"
+      height="75"
+    >
       <v-container class="pa-0 d-flex align-center justify-space-between">
-        <v-app-bar-nav-icon class="white--text d-lg-none" v-if="$vuetify.breakpoint.mobile"
-          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          class="white--text d-lg-none"
+          v-if="$vuetify.breakpoint.mobile"
+          @click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
         <n-link to="/">
-          <v-img src="/logos/logo-completo-footer.png" alt="Banner Cenakin" height="65" width="150" contain></v-img>
+          <v-img
+            src="/logos/logo-completo-footer.png"
+            alt="Banner Cenakin"
+            height="65"
+            width="150"
+            contain
+          ></v-img>
         </n-link>
         <Menu v-if="!$vuetify.breakpoint.mobile"></Menu>
       </v-container>
@@ -31,8 +56,18 @@
       <nuxt />
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="mx-2" fab dark color="#43a047" id="boton-whats" href="https://wa.me/56995999796" target="_blank"
-            v-on="on" v-bind="attrs" aria-label="Whatsapp">
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            color="#43a047"
+            id="boton-whats"
+            href="https://wa.me/56995999796"
+            target="_blank"
+            v-on="on"
+            v-bind="attrs"
+            aria-label="Whatsapp"
+          >
             <v-icon dark> mdi-message-reply-text </v-icon>
           </v-btn>
         </template>
@@ -50,7 +85,7 @@ import Menu from "~/components/Menu";
 
 export default {
   data: () => ({
-    drawer: false,
+    drawer: false
   }),
   components: {
     Menu,
@@ -63,8 +98,8 @@ export default {
     this.indiceUf();
   },
   methods: {
-    ...mapActions(["listaPropiedades", "ultimasVendidas", "indiceUf"]),
-  },
+    ...mapActions(["listaPropiedades", "ultimasVendidas", "indiceUf"])
+  }
 };
 </script>
 
@@ -126,5 +161,7 @@ ul, ol
 
 .v-card__title
   word-break: normal
-</style>
 
+.v-application p
+  margin-bottom: 0 !important
+</style>
