@@ -2,11 +2,7 @@
   <v-card class="pa-5">
     <h1>Formulario</h1>
     <v-alert type="success" v-if="valido">El mensaje ha sido enviado</v-alert>
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
+    <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
         v-model="name"
         :rules="nameRules"
@@ -21,20 +17,11 @@
         required
       ></v-text-field>
 
-      <v-text-field
-        v-model="rut"
-        label="Rut"
-      ></v-text-field>
+      <v-text-field v-model="rut" label="Rut"></v-text-field>
 
-      <v-text-field
-        v-model="celular"
-        label="Celular"
-      ></v-text-field>
+      <v-text-field v-model="celular" label="Celular"></v-text-field>
 
-      <v-text-field
-        v-model="asunto"
-        label="Asunto"
-      ></v-text-field>
+      <v-text-field v-model="asunto" label="Asunto"></v-text-field>
 
       <v-textarea
         v-model="mensaje"
@@ -51,11 +38,7 @@
         Enviar
       </v-btn>
 
-      <v-btn
-        color="yellow"
-        class="mr-4"
-        @click="reset"
-      >
+      <v-btn color="yellow" class="mr-4" @click="reset">
         Limpiar
       </v-btn>
     </v-form>
@@ -67,19 +50,17 @@ export default {
   data: () => ({
     valid: true,
     valido: false,
-    rut: '',
-    name: '',
-    celular: '',
-    asunto: '',
-    mensaje: '',
-    nameRules: [
-      v => !!v || 'Su Nombre es requerido',
-    ],
-    email: '',
+    rut: "",
+    name: "",
+    celular: "",
+    asunto: "",
+    mensaje: "",
+    nameRules: [v => !!v || "Su Nombre es requerido"],
+    email: "",
     emailRules: [
-      v => !!v || 'Su correo es requerido',
-      v => /.+@.+\..+/.test(v) || 'Debe ser un correo válido',
-    ],
+      v => !!v || "Su correo es requerido",
+      v => /.+@.+\..+/.test(v) || "Debe ser un correo válido"
+    ]
   }),
 
   methods: {
@@ -94,23 +75,25 @@ export default {
     async formSubmit() {
       await this.$axios
         .post("https://marsolpropiedades.cl/data/correo.php", {
-          'nombre': this.name,
-          'correo': this.email,
-          'rut': this.rut,
-          'celular': this.celular,
-          'asunto': this.asunto,
-          'mensaje': this.mensaje,
-        }).then(response => {
+          nombre: this.name,
+          correo: this.email,
+          rut: this.rut,
+          celular: this.celular,
+          asunto: this.asunto,
+          mensaje: this.mensaje
+        })
+        .then(response => {
           if (response.data.error) {
-            console.log('error', response.data.error)
+            console.log("error", response.data.error);
           } else {
             this.valido = true;
             this.reset();
           }
-        }).catch(error => {
-          console.log(error.response)
+        })
+        .catch(error => {
+          console.log(error.response);
         });
     }
-  },
-}
+  }
+};
 </script>
