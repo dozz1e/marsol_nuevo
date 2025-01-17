@@ -10,7 +10,7 @@ export default () => ({
       nombre: "Marlene Alarcón",
       titulo: "Administradora de Empresas",
       fono: "56995999796",
-      correo: "malarcon@marsolpropiedades.cl",
+      correo: "contacto@marsolpropiedades.cl",
       slug: "marlene"
     }
   ],

@@ -4,6 +4,7 @@
       <v-container class="d-flex justify-center align-end">
         <div>
           <v-img src="/images/error.svg" alt="Error 404" width="600"></v-img>
+          <a href="https://marsolpropiedades.cl">INICIO</a>
         </div>
       </v-container>
     </section>
