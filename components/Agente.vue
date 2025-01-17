@@ -53,17 +53,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   props: {
     agente: {
-      type: Object,
+      type: Object
     },
     color: {
       type: String,
-      default: "rgba(255,255,255,.5)",
-    },
-  },
+      default: "rgba(255,255,255,.5)"
+    }
+  }
 };
 </script>
 
