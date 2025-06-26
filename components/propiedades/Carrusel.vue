@@ -18,8 +18,8 @@ export default {
   props: {
     id: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
 
   data: () => ({
@@ -28,8 +28,8 @@ export default {
       accessibility: false,
       infinite: true,
       slidesToShow: 1,
-      slidesToScroll: 1
-    }
+      slidesToScroll: 1,
+    },
   }),
 
   mounted() {
@@ -49,15 +49,15 @@ export default {
                 sourceUrl
               }
             }
-          }`
+          }`,
           }
         );
         this.images = await datos.data.mediaItems.nodes;
       } catch (e) {
         console.log(e);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
