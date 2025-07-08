@@ -13,5 +13,5 @@ export default {
   },
   SET_INDICE(state, datos) {
     state.indice = datos;
-  }
+  },
 };

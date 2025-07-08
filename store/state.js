@@ -11,29 +11,29 @@ export default () => ({
       titulo: "Administradora de Empresas",
       fono: "56995999796",
       correo: "contacto@marsolpropiedades.cl",
-      slug: "marlene"
-    }
+      slug: "marlene",
+    },
   ],
   dichos: [
     {
       titulo: "Un gran equipo siempre junto a ti",
-      sub: "Juntos buscaremos el hogar de tus sueños"
+      sub: "Juntos buscaremos el hogar de tus sueños",
     },
     {
       titulo: "Tu compra o venta en las mejores manos",
-      sub: "Venta y arriendo de propiedades"
+      sub: "Venta y arriendo de propiedades",
     },
     {
       titulo: "Vendemos o arrendamos su propiedad",
-      sub: "¿Necesitas vender o arrendar? Confía en los mejores profesionales"
+      sub: "¿Necesitas vender o arrendar? Confía en los mejores profesionales",
     },
     {
       titulo: "Encuentra con nosotros la propiedad que estás buscando ",
-      sub: "Te ayudamos a encontrar el espacio que necesitas"
+      sub: "Te ayudamos a encontrar el espacio que necesitas",
     },
     {
       titulo: "Este puede ser tu nuevo hogar",
-      sub: "Compra o vende con nosotros"
-    }
-  ]
+      sub: "Compra o vende con nosotros",
+    },
+  ],
 });

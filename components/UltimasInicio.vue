@@ -9,6 +9,9 @@
           el dormitorio. Dos dormitorios, tres dormitorios, y más grandes.
         </span>
       </header>
+      <!-- <pre>
+        {{ listadoUltimas }}
+      </pre> -->
       <v-row v-if="0 < listadoUltimas.length">
         <v-col
           cols="12"
@@ -19,11 +22,11 @@
         >
           <propiedades-card-alterno
             :slug="ulti.slug"
-            :imagen="ulti.featuredImage.node.sourceUrl"
+            :imagen="`https://www.marsolpropiedades.cl/images/propiedades/${ulti.slug}/1.webp`"
             :titulo="ulti.title"
             :precio="ulti.precio.precio"
             :preciouf="ulti.precio.precioUf"
-            :categoria="ulti.categoriaGraphql.categoria"
+            :categoria="ulti.categoriaGraphql.categoria[0]"
             :operacion="ulti.operacion.operacion"
             :direccion="ulti.direccion.direccion"
             :area="ulti.datos.areaTotal"

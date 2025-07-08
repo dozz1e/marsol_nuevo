@@ -1,12 +1,12 @@
 <template>
   <div v-if="null != soloPropiedad">
-    <portada-prop :imagen="soloPropiedad.featuredImage.node.sourceUrl" :direccion="soloPropiedad.direccion.ciudad"
-      :categoria="soloPropiedad.categoriaGraphql.categoria" :nombre="soloPropiedad.title"
+    <portada-prop :imagen="`https://marsolpropiedades.cl/images/propiedades/${soloPropiedad.slug}/1.webp`" :direccion="soloPropiedad.direccion.ciudad"
+      :categoria="soloPropiedad.categoriaGraphql.categoria[0]" :nombre="soloPropiedad.title"
       :opera="soloPropiedad.operacion.operacion"></portada-prop>
     <v-container id="propiedad">
       <v-row class="body">
         <v-col cols="12" md="8" class="main">
-          <carrusel :id="propiedad(3)"></carrusel>
+          <carrusel :id="propiedad(3)" :images="soloPropiedad.datos.galeria"></carrusel>
           <section class="datos">
             <v-card>
               <v-tabs color="red accent-4" background-color="grey lighten-4">
@@ -15,7 +15,7 @@
                   <section class="datos">
                     <datos :propiedad="{
                       titulo: soloPropiedad.title,
-                      categoria: soloPropiedad.categoriaGraphql.categoria,
+                      categoria: soloPropiedad.categoriaGraphql.categoria[0],
                       operacion: soloPropiedad.operacion.operacion,
                       valor: soloPropiedad.precio.precio,
                       uf: soloPropiedad.precio.precioUf,
@@ -26,9 +26,6 @@
                   </section>
                   <section class="compartir">
                     <compartir :propiedad="soloPropiedad"></compartir>
-                  </section>
-                  <section class="video" v-if="soloPropiedad.youtube.youtube">
-                    <video-propiedad :src="soloPropiedad.youtube.youtube" :name="soloPropiedad.title"></video-propiedad>
                   </section>
                 </v-tab-item>
                 <v-tab-item>
@@ -71,14 +68,14 @@
         <v-col cols="12" md="4" class="aside">
           <aside>
             <section class="contacto">
-              <agente :agente="listadoAgentes[0]"></agente>
+              <agente :agente="agente"></agente>
             </section>
             <v-card dark tile class="mt-3 pa-5" color="#37353d" v-if="!$vuetify.breakpoint.mobile">
-              <!--<section class="tags">
+              <section class="tags">
                 <tags></tags>
-              </section>-->
+              </section>
               <div>
-                <!--<v-divider class="my-5"></v-divider>-->
+                <v-divider class="my-5"></v-divider>
                 <section class="ultimas">
                   <ultimas></ultimas>
                 </section>
@@ -88,7 +85,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <foot></foot>
+    <foot />
   </div>
 </template>
 
@@ -110,7 +107,15 @@ import VideoPropiedad from "@/components/propiedades/VideoPropiedad.vue";
 export default {
   data: () => ({
     tab: null,
-    items: ["Información", "Detalles", "Extras", "Mapa"]
+    items: ["Información", "Detalles", "Extras", "Mapa"],
+    agente: {
+      id: 1,
+      nombre: "Marlene Alarcón",
+      titulo: "Administradora de Empresas",
+      fono: "56995999796",
+      correo: "contacto@marsolpropiedades.cl",
+      slug: "marlene",
+    }
   }),
 
   layout: 'propiedad',
@@ -183,13 +188,13 @@ export default {
         }
         case 2: {
           if (this.soloPropiedad != null) {
-            aux = this.soloPropiedad.featuredImage.node.sourceUrl;
+            aux = `https://marsolpropiedades.cl/images/propiedades/${this.soloPropiedad.slug}/1.webp`;
           }
           break;
         }
         case 3: {
           if (this.soloPropiedad != null) {
-            aux = this.soloPropiedad.databaseId;
+            aux = this.$route.params.id;
           }
           break;
         }
@@ -199,7 +204,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["listadoAgentes", "listadoUltimas"]),
+    ...mapGetters(["listadoUltimas"]),
     direccionPropi() {
       let direccion = this.soloPropiedad.direccion.ciudad;
       if (this.soloPropiedad.direccion.direccion)
@@ -219,11 +224,8 @@ export default {
       .post("https://marsolpropiedades.cl/data/graphql", {
         query: `{
           propiedad(id: "${context.params.id}", idType: URI) {
-            databaseId
             title
-            agentes {
-              agentes
-            }
+            slug
             categoriaGraphql {
               categoria
             }
@@ -231,6 +233,7 @@ export default {
               banos
               habitaciones
               areaTotal
+              galeria
             }
             detallesAdicionales {
               detalles
@@ -241,14 +244,6 @@ export default {
             }
             espaciosComunes {
               espaciosComunes
-            }
-            featuredImage {
-              node {
-                sourceUrl(size: MEDIUM)
-              }
-            }
-            importancia {
-              importancia
             }
             incluye {
               incluye
@@ -264,10 +259,6 @@ export default {
               metaDesc
               metaKeywords
               title
-            }
-            slug
-            youtube {
-              youtube
             }
           }
         }`

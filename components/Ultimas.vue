@@ -5,7 +5,7 @@
       <v-list-item v-for="(ult, index) in listadoUltimas" :key="index" nuxt :to="`/propiedades/${ult.slug}`"
         color="#37353d">
         <v-list-item-avatar horizontal tile class="ml-1">
-          <v-img :src="ult.featuredImage.node.sourceUrl" :alt="ult.title"></v-img>
+          <v-img :src="`https://marsolpropiedades.cl/images/propiedades/${ult.slug}/1.webp`" :alt="ult.title"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title v-text="ult.title" class="white--text"></v-list-item-title>

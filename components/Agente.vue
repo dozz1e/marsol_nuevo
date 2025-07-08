@@ -8,6 +8,7 @@
             :alt="agente.nombre"
             :height="$vuetify.breakpoint.xsOnly ? '' : '150'"
             width="100%"
+            position="top"
           ></v-img>
         </v-col>
         <v-col cols="12" sm="7" class="pa-0">
@@ -34,7 +35,7 @@
                 <v-list-item-title v-text="agente.correo"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item-action class="mt-2">
+            <v-list-item-action>
               <v-btn
                 :href="`https://wa.me/${agente.fono}`"
                 target="_blank"

@@ -8,9 +8,6 @@ export default {
             nodes {
               title
               slug
-              youtube {
-                youtube
-              }
               precio {
                 precio
                 precioUf
@@ -20,16 +17,6 @@ export default {
               }
               incluye {
                 incluye
-              }
-              importancia {
-                importancia
-              }
-              featuredImage {
-                node {
-                  sourceUrl(size: MEDIUM)
-                  altText
-                  link
-                }
               }
               espaciosComunes {
                 espaciosComunes
@@ -45,24 +32,27 @@ export default {
                 areaTotal
                 banos
                 habitaciones
+                galeria
               }
               categoriaGraphql {
                 categoria
-              }
-              agentes {
-                agentes
               }
               seo {
                 metaKeywords
                 metaDesc
                 title
               }
+              categories(first: 10) {
+                nodes {
+                  categoryId
+                }
+              }
             }
           }
-        }`
+        }`,
       }
     );
-    this.$axios.onError(error => {
+    this.$axios.onError((error) => {
       console.log(error);
     });
     commit("SET_PROPIEDADES", propiedades.data.data.propiedades.nodes);
@@ -86,14 +76,6 @@ export default {
               incluye {
                 incluye
               }
-              importancia {
-                importancia
-              }
-              featuredImage {
-                node {
-                  sourceUrl(size: MEDIUM)
-                }
-              }
               direccion {
                 ciudad
                 direccion
@@ -102,13 +84,14 @@ export default {
                 areaTotal
                 banos
                 habitaciones
+                galeria
               }
               categoriaGraphql {
                 categoria
               }
             }
           }
-        }`
+        }`,
       }
     );
     commit("SET_VENDIDAS", propiedades.data.data.propiedades.nodes);

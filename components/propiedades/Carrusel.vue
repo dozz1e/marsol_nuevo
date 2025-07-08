@@ -5,7 +5,7 @@
         eager
         v-for="(image, i) in images"
         :key="i"
-        :src="image.sourceUrl"
+        :src="`https://marsolpropiedades.cl/images/propiedades/${id}/${image}.webp`"
         contain
       ></v-carousel-item>
     </v-carousel>
@@ -17,13 +17,16 @@ import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 export default {
   props: {
     id: {
+      type: String,
+      default: "0",
+    },
+    images: {
       type: Number,
       default: 0,
     },
   },
 
   data: () => ({
-    images: [],
     slickOptions: {
       accessibility: false,
       infinite: true,
@@ -31,33 +34,6 @@ export default {
       slidesToScroll: 1,
     },
   }),
-
-  mounted() {
-    this.imagenes();
-  },
-
-  methods: {
-    async imagenes() {
-      try {
-        let datos = await this.$axios.$post(
-          "https://marsolpropiedades.cl/data/graphql",
-          {
-            query: `{
-            mediaItems(first: 30, where: {parent: "${this.id}", orderby: {order: ASC, field: DATE}}) {
-              nodes {
-                altText
-                sourceUrl
-              }
-            }
-          }`,
-          }
-        );
-        this.images = await datos.data.mediaItems.nodes;
-      } catch (e) {
-        console.log(e);
-      }
-    },
-  },
 };
 </script>
 

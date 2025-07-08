@@ -14,10 +14,10 @@
               sm="6"
             >
               <propiedades-card-alterno
-                :imagen="pro.featuredImage.node.sourceUrl"
+                :imagen="`https://www.marsolpropiedades.cl/images/propiedades/${pro.slug}/1.webp`"
                 :titulo="pro.title"
                 :direccion="pro.direccion.direccion"
-                :categoria="pro.categoriaGraphql.categoria"
+                :categoria="pro.categoriaGraphql.categoria[0]"
                 :operacion="pro.operacion.operacion"
                 :area="pro.datos.areaTotal"
                 :habitaciones="pro.datos.habitaciones"
@@ -43,10 +43,10 @@
               sm="6"
             >
               <propiedades-card-alterno
-                :imagen="pro.featuredImage.node.sourceUrl"
+                :imagen="`https://www.marsolpropiedades.cl/images/propiedades/${pro.slug}/1.webp`"
                 :titulo="pro.title"
                 :direccion="pro.direccion.direccion"
-                :categoria="pro.categoriaGraphql.categoria"
+                :categoria="pro.categoriaGraphql.categoria[0]"
                 :operacion="pro.operacion.operacion"
                 :area="pro.datos.areaTotal"
                 :habitaciones="pro.datos.habitaciones"

@@ -119,11 +119,11 @@
           >
             <propiedades-card-alterno
               :slug="pro.slug"
-              :imagen="pro.featuredImage.node.sourceUrl"
+              :imagen="`https://marsolpropiedades.cl/images/propiedades/${pro.slug}/1.webp`"
               :titulo="pro.title"
               :precio="pro.precio.precio"
               :preciouf="pro.precio.precioUf"
-              :categoria="pro.categoriaGraphql.categoria"
+              :categoria="pro.categoriaGraphql.categoria[0]"
               :operacion="pro.operacion.operacion"
               :direccion="pro.direccion.direccion"
               :area="pro.datos.areaTotal"

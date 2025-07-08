@@ -7,8 +7,8 @@
           <v-row v-if="0 < filtroPropiedades.length">
             <v-col cols="12" v-for="(pro, index) in filtroPropiedades" :key="index" nuxt
               :to="`/propiedades/${pro.slug}`" sm="6">
-              <propiedades-card-alterno :imagen="pro.featuredImage.node.link" :titulo="pro.title"
-                :direccion="pro.direccion.direccion" :categoria="pro.categoriaGraphql.categoria"
+              <propiedades-card-alterno :imagen="`https://marsolpropiedades.cl/images/propiedades/${pro.slug}/1.webp`" :titulo="pro.title"
+                :direccion="pro.direccion.direccion" :categoria="pro.categoriaGraphql.categoria[0]"
                 :operacion="pro.operacion.operacion" :area="pro.datos.areaTotal" :habitaciones="pro.datos.habitaciones"
                 :banos="pro.datos.banos" :automv="movil(pro)" :precio="pro.precio.precio"
                 :preciouf="pro.precio.precioUf" :slug="pro.slug"
@@ -92,7 +92,7 @@ export default {
         let ope = pdds.operacion.operacion.toLowerCase().replace(/\s+/g, "-")
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "");
-        let cate = pdds.categoriaGraphql.categoria.toLowerCase().replace(/\s+/g, "-")
+        let cate = pdds.categoriaGraphql.categoria[0].toLowerCase().replace(/\s+/g, "-")
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "");
         let city = pdds.direccion.ciudad

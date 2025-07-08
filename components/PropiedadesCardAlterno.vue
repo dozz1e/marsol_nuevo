@@ -13,16 +13,15 @@
       </v-card-subtitle>
       <v-card-title class="d-flex">
         <v-row no-gutters>
-          <v-col cols="2">
-            <v-icon color="#878fd6">mdi-map-marker</v-icon>
-          </v-col>
-          <v-col cols="10">
+          <v-col cols="12">
             <div class="d-flex flex-column">
-              <strong v-text="titulo" class="card__title"></strong>
-              <span class="pt-2"></span>
-              <div v-if="direccion && !ciudad" v-text="direccion" class="card__sub"></div>
-              <div v-if="direccion && ciudad" v-text="`${direccion} , ${ciudad}`" class="card__sub"></div>
-              <div v-if="!direccion && ciudad" v-text="ciudad" class="card__sub"></div>
+              <strong v-text="titulo" class="card__title pb-2"></strong>
+              <div class="d-flex align-center">
+                <v-icon color="#878fd6" small class="pr-1">mdi-map-marker</v-icon>
+                <div v-if="direccion && !ciudad" v-text="direccion" class="card__sub"></div>
+                <div v-if="direccion && ciudad" v-text="`${direccion} , ${ciudad}`" class="card__sub"></div>
+                <div v-if="!direccion && ciudad" v-text="ciudad" class="card__sub"></div>
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -97,7 +96,7 @@ export default {
     &__title
       height: 100px
       .card__title
-        line-height: 1
+        line-height: 1.2
       .card__sub
         font-size: 16px
         line-height: 1
