@@ -8,6 +8,7 @@
             :alt="agente.nombre"
             :height="$vuetify.breakpoint.xsOnly ? '' : '150'"
             width="100%"
+            position="top"
           ></v-img>
         </v-col>
         <v-col cols="12" sm="7" class="pa-0">

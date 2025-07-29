@@ -9,60 +9,12 @@ const rutas = async () => {
             nodes {
               title
               slug
-              youtube {
-                youtube
-              }
-              precio {
-                precio
-                precioUf
-              }
-              operacion {
-                operacion
-              }
-              incluye {
-                incluye
-              }
-              importancia {
-                importancia
-              }
-              featuredImage {
-                node {
-                  altText
-                  link
-                }
-              }
-              espaciosComunes {
-                espaciosComunes
-              }
-              direccion {
-                ciudad
-                direccion
-              }
-              detallesAdicionales {
-                detalles
-              }
-              datos {
-                areaTotal
-                banos
-                habitaciones
-              }
-              categoriaGraphql {
-                categoria
-              }
-              agentes {
-                agentes
-              }
-              seo {
-                metaKeywords
-                metaDesc
-                title
-              }
             }
           }
-        }`
+        }`,
     })
-    .then(res => {
-      return res.data.data.propiedades.nodes.map(crs => {
+    .then((res) => {
+      return res.data.data.propiedades.nodes.map((crs) => {
         return "/propiedades/" + crs.slug;
       });
     });
@@ -117,18 +69,18 @@ export default {
         onload: "this.media='all'",
       },
     ],
-    // script: [
-    //   {
-    //     type: 'module',
-    //     src: 'https://www.googletagmanager.com/gtag/js?id=G-ML88QTCTJF',
-    //     defer: true,
-    //   },
-    //   {
-    //     type: 'module',
-    //     src: 'https://marsolpropiedades.cl/js/google.js',
-    //     defer: true,
-    //   }
-    // ]
+    script: [
+      {
+        type: "module",
+        src: "https://www.googletagmanager.com/gtag/js?id=G-ML88QTCTJF",
+        defer: true,
+      },
+      {
+        type: "module",
+        src: "https://marsolpropiedades.cl/js/google.js",
+        defer: true,
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
